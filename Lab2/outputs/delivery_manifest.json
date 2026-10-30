@@ -1,0 +1,31 @@
+{
+  "created": "2026-10-30T08:14:11.121772+00:00",
+  "status": "VERIFIED",
+  "files": {
+    "outputs\\report\\epoch_metrics.csv": "1d093559e7e401a299fdabd5a5b0b3d93339ef5ff994e050f3e22202a85ee97d",
+    "outputs\\report\\experiments.csv": "36ecef8b7fc6265edf5871e91b832c6701a7bb565b1ce3228d4c1fc62ad1f3f4",
+    "outputs\\report\\learning_curves.png": "1ea55217a4154c0a45e073088d7925f3ee61d5571d0262582eeb87ae67900d33",
+    "outputs\\report\\per_class_metrics.csv": "512dfd36c18aa84a757c750f749ca08b190fe75575cfce13cf2a843fbe191fb2",
+    "outputs\\report\\R02_confusion_matrix.png": "abe4c4612ba90c08d7331f45b54fa2c1161cb88124606c9f22cff4733e56c94d",
+    "outputs\\report\\R02_predictions.csv": "9a595d173d2bf0a04980caf67b1b1e5d920026f38f09577a3e47728697135e6a",
+    "outputs\\report\\R02_test.json": "622fac5cb855bd0567dd9c1e464db789a2809fa1a7b4e2f81ae8f5cc3c2cba09",
+    "outputs\\report\\R06_confusion_matrix.png": "69e5a022798602a5726b06fe299c006e40bfd75432766de5babfae6c2a801d29",
+    "outputs\\report\\R06_predictions.csv": "e90b693b1b04976e3c2ae8044f3dc99c169faeed473efda13415be419fe674d0",
+    "outputs\\report\\R06_test.json": "0e19b458fa78e49931c946f125c767d4d27c44dfd45059a4e09a34ab0a2ce142",
+    "outputs\\report\\R07_confusion_matrix.png": "935caf6bfa3882761e1b7fe1dc3cf286de06b6acb20ae5654820395766455afc",
+    "outputs\\report\\R07_predictions.csv": "e9e6b03aa0db044ef045e05e2b12546fa38674c59321adcf7c824cb0aad29612",
+    "outputs\\report\\R07_test.json": "e6789642015ffba875afef442e588143db31612d495b18d23d32233c999e92b0",
+    "outputs\\report\\report.md": "5769a34af0a5816dd5aeabd0f932a280826090e20d7b9c1122f95af81c8dbc03",
+    "outputs\\report\\summary.json": "9fd2cb6df26dc0fc68883080f1260437e5ff1d01c7db0c87d4f89fa46499d18d",
+    "outputs\\report\\test_metrics.csv": "e5c4b19849d3ac1ddb8a54b43ffee42745ef0d41feacae4408745641f0e3b47a",
+    "outputs\\notebooks\\main.executed.ipynb": "624f18654457aebef336cdb415cd5a5cd9b99b9062c857fdcfc6a23a49f3419c",
+    "outputs\\verification.json": "c45ef384f87d913266249f7760c5b60827e7f8762669abdc333b5fd30f45e7b7",
+    "outputs\\unit_tests.json": "60d211cacb6d0196c46fbfe4c6499a53a8411d6a1bd5e2af0b0d0dc63e1ed95f",
+    "outputs\\data\\manifest.csv": "44b89a4696b93286e21a1e8c83ad4a2bcadf5e32ab8a3759268c5df2b6aa067d",
+    "outputs\\data\\audit.json": "6198b48eb6f42f1da15570ff24a9a6a692ad45f77ea1f6cab90e8cd3a93dbd71",
+    "outputs\\models\\preflight.json": "80d17d4e1e54d53e5640a2e70e86177c740f1849b275c8573cdee62f31ecd1a4",
+    "outputs\\models\\weights.json": "0094eba2b489e6352ffd6e78baebc5914c3ab39864098c6ac11c41a1a1825b3b",
+    "outputs\\dependencies.freeze.txt": "ef660cf44a14477cb8209997fef9c96b0bde0cae27b85c6029db377ad65b3c07",
+    "outputs\\experiments\\selection.json": "421280efed35b5c82d2cab529559aa897f724949c69b209bc2ca79efafd0c7fe"
+  }
+}

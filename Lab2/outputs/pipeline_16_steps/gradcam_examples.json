@@ -1,0 +1,12 @@
+[
+  {
+    "path": "seg_test/seg_test/buildings/20057.jpg",
+    "prediction": 0,
+    "heatmap_peak_before_normalization": 0.08257732540369034
+  },
+  {
+    "path": "seg_test/seg_test/buildings/20246.jpg",
+    "prediction": 5,
+    "heatmap_peak_before_normalization": 0.0548713319003582
+  }
+]

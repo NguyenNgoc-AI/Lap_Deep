@@ -1,0 +1,13 @@
+{
+  "status": "PASSED",
+  "created": "2026-10-30T12:25:42.201243+00:00",
+  "charts": 4,
+  "final_run": "R07",
+  "transfer_runs": [
+    "R02",
+    "R06"
+  ],
+  "selection": "validation accuracy, then loss, epoch, run ID",
+  "existing_cells_preserved": true,
+  "notebook_sha256": "8f0b56ace8fbf487cc8f860747126e0da059770b90ca0f21d082e002d6c78fcd"
+}

@@ -1,0 +1,11 @@
+# Nhận xét kết quả thực nghiệm
+
+Nguồn số liệu: `outputs/report/summary.json`, `epoch_metrics.csv`, các confusion matrix và CSV dự đoán. Đây là nhận xét sau khi hoàn tất đánh giá; không dùng để điều chỉnh hoặc huấn luyện lại mô hình.
+
+- **Cấu hình cuối:** R07, VGG11 fine-tune, được chọn bằng validation 92,03% trước khi chạy test. Test đúng **2.784/3.000 ảnh = 92,80%**, macro-F1 **0,9297**. So với checkpoint cha R02, tăng 0,50 điểm phần trăm validation và 1,10 điểm phần trăm test (33 ảnh đúng thêm). R07 có thêm 3 epoch học nên không phải so sánh ngang ngân sách.
+- **Kiến trúc:** best transfer VGG11 đạt 91,53% validation và 91,70% test; DenseNet121 đạt 91,21% validation và 91,53% test. Chênh lệch test chỉ tương ứng 5 ảnh, chưa đủ để nói VGG11 luôn tốt hơn. DenseNet có khoảng 6,96 triệu tham số, VGG11 khoảng 128,79 triệu sau khi thay đầu ra. Ít tham số không bảo đảm luôn chạy nhanh hơn: DenseNet nhanh hơn ở cặp R04/R01, nhưng chậm hơn ở R05/R02 trên laptop trong lượt đo này.
+- **Hyperparameters:** giảm LR giúp VGG11 tăng 0,54 điểm phần trăm validation, DenseNet tăng 0,07; tăng batch lên 16 giúp tăng lần lượt 0,25 và 0,18 điểm. Đây là kết quả của một seed và 5 epoch, không phải quy luật chung.
+- **Lớp dễ và khó:** R07 nhận đúng forest 470/474 ảnh (recall 99,16%). Glacier có recall thấp nhất, 468/553 (84,63%). Có 67 glacier bị nhận thành mountain và 45 mountain bị nhận thành glacier: tổng 112/216 lỗi, khoảng 51,85% số lỗi. Buildings và street cũng dễ nhầm, tổng 52 lỗi hai chiều. Các cặp này có thể chia sẻ đặc trưng hình ảnh; cần xem từng ảnh nếu muốn xác nhận nguyên nhân.
+- **Accuracy và loss không luôn cùng chiều:** R07 tăng validation accuracy từ 91,74% lên 92,03%, nhưng validation loss tăng từ khoảng 0,2378 lên 0,2494, trong khi train loss giảm 0,1211 xuống 0,0837. Cross-entropy còn phản ánh độ tự tin của dự đoán; số ảnh đúng tăng vẫn có thể đi cùng một số lỗi tự tin hơn. Đây là dấu hiệu cần theo dõi overfitting/độ tin cậy, không phải lý do đổi tiêu chí chọn sau khi đã xem test.
+
+Giới hạn: một seed, ngân sách epoch ngắn, dataset có nhãn mơ hồ và ảnh gần giống có thể chưa được SHA256 phát hiện. Không khẳng định ý nghĩa thống kê hay khả năng tổng quát ngoài dataset này. Hướng mở rộng hợp lý là nhiều seed và kiểm tra các cặp lớp dễ nhầm trong một thực nghiệm mới có kế hoạch riêng.

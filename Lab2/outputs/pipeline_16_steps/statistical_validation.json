@@ -1,0 +1,19 @@
+{
+  "comparison": "R07 minus R02 (post-hoc paired analysis)",
+  "n": 3000,
+  "accuracy_R07": 0.928,
+  "wilson_95_accuracy_R07": [
+    0.9181926772894202,
+    0.9367126282017009
+  ],
+  "accuracy_difference": 0.011,
+  "paired_bootstrap_95_difference": [
+    0.0036666666666666666,
+    0.017666666666666667
+  ],
+  "bootstrap_replicates": 2000,
+  "R02_only_correct": 41,
+  "R07_only_correct": 74,
+  "mcnemar_exact_two_sided_p": 0.00268570100596285,
+  "seed": 42
+}

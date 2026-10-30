@@ -1,0 +1,288 @@
+{
+  "bc7d06d89f0cdd63f7bab9c4bd1dc9a0d6ea543c64e51b16a395e1657eea22ad": [
+    {
+      "relative_path": "seg_train/seg_train/buildings/4551.jpg",
+      "split": "train",
+      "class_name": "buildings",
+      "label": 0,
+      "sha256": "bc7d06d89f0cdd63f7bab9c4bd1dc9a0d6ea543c64e51b16a395e1657eea22ad",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_train/seg_train/street/1495.jpg",
+      "split": "train",
+      "class_name": "street",
+      "label": 5,
+      "sha256": "bc7d06d89f0cdd63f7bab9c4bd1dc9a0d6ea543c64e51b16a395e1657eea22ad",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ],
+  "1ef964e4f5290d17f34a66ee36b72e8ca53e01286dcc09dba7d10b591eb40a7a": [
+    {
+      "relative_path": "seg_train/seg_train/buildings/4634.jpg",
+      "split": "train",
+      "class_name": "buildings",
+      "label": 0,
+      "sha256": "1ef964e4f5290d17f34a66ee36b72e8ca53e01286dcc09dba7d10b591eb40a7a",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_test/seg_test/street/21170.jpg",
+      "split": "test",
+      "class_name": "street",
+      "label": 5,
+      "sha256": "1ef964e4f5290d17f34a66ee36b72e8ca53e01286dcc09dba7d10b591eb40a7a",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ],
+  "08d8cd29e9b79273795a13092575d9b3435c000e7d4c1769f459d363ae5436e4": [
+    {
+      "relative_path": "seg_train/seg_train/buildings/5069.jpg",
+      "split": "train",
+      "class_name": "buildings",
+      "label": 0,
+      "sha256": "08d8cd29e9b79273795a13092575d9b3435c000e7d4c1769f459d363ae5436e4",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_train/seg_train/street/2764.jpg",
+      "split": "train",
+      "class_name": "street",
+      "label": 5,
+      "sha256": "08d8cd29e9b79273795a13092575d9b3435c000e7d4c1769f459d363ae5436e4",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ],
+  "9d7de1bd8ef0d88a880b0a9e550cf5ab5adae5b621c0affbe61fab621353d73f": [
+    {
+      "relative_path": "seg_train/seg_train/buildings/9769.jpg",
+      "split": "train",
+      "class_name": "buildings",
+      "label": 0,
+      "sha256": "9d7de1bd8ef0d88a880b0a9e550cf5ab5adae5b621c0affbe61fab621353d73f",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_train/seg_train/street/7293.jpg",
+      "split": "train",
+      "class_name": "street",
+      "label": 5,
+      "sha256": "9d7de1bd8ef0d88a880b0a9e550cf5ab5adae5b621c0affbe61fab621353d73f",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ],
+  "2b910be7ec5a40d59756d966c93e7d159d8e49918a6af3ddf1e406b5199e237b": [
+    {
+      "relative_path": "seg_train/seg_train/glacier/10234.jpg",
+      "split": "train",
+      "class_name": "glacier",
+      "label": 2,
+      "sha256": "2b910be7ec5a40d59756d966c93e7d159d8e49918a6af3ddf1e406b5199e237b",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_train/seg_train/mountain/7654.jpg",
+      "split": "train",
+      "class_name": "mountain",
+      "label": 3,
+      "sha256": "2b910be7ec5a40d59756d966c93e7d159d8e49918a6af3ddf1e406b5199e237b",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ],
+  "2702b4f323040bfd64caf52d56242cae54bf15bde9909f1d2cda57c25f81c82e": [
+    {
+      "relative_path": "seg_train/seg_train/glacier/16044.jpg",
+      "split": "train",
+      "class_name": "glacier",
+      "label": 2,
+      "sha256": "2702b4f323040bfd64caf52d56242cae54bf15bde9909f1d2cda57c25f81c82e",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_train/seg_train/mountain/17775.jpg",
+      "split": "train",
+      "class_name": "mountain",
+      "label": 3,
+      "sha256": "2702b4f323040bfd64caf52d56242cae54bf15bde9909f1d2cda57c25f81c82e",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ],
+  "95cf645dcc5e71a7b76d72f8c3cd38aa78a5a78d17bad66d9bcc376ea5a68d47": [
+    {
+      "relative_path": "seg_train/seg_train/glacier/16827.jpg",
+      "split": "train",
+      "class_name": "glacier",
+      "label": 2,
+      "sha256": "95cf645dcc5e71a7b76d72f8c3cd38aa78a5a78d17bad66d9bcc376ea5a68d47",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_train/seg_train/mountain/15770.jpg",
+      "split": "train",
+      "class_name": "mountain",
+      "label": 3,
+      "sha256": "95cf645dcc5e71a7b76d72f8c3cd38aa78a5a78d17bad66d9bcc376ea5a68d47",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ],
+  "ec26362c10297d9f6f77bc1ab6d13c0b607f6041733d089539ba7c87dc242147": [
+    {
+      "relative_path": "seg_train/seg_train/glacier/19319.jpg",
+      "split": "train",
+      "class_name": "glacier",
+      "label": 2,
+      "sha256": "ec26362c10297d9f6f77bc1ab6d13c0b607f6041733d089539ba7c87dc242147",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_train/seg_train/mountain/6518.jpg",
+      "split": "train",
+      "class_name": "mountain",
+      "label": 3,
+      "sha256": "ec26362c10297d9f6f77bc1ab6d13c0b607f6041733d089539ba7c87dc242147",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ],
+  "9554e9a19a81fdb395d211435358b162de31c2b3acb020e6e863ae43f136a999": [
+    {
+      "relative_path": "seg_train/seg_train/glacier/8191.jpg",
+      "split": "train",
+      "class_name": "glacier",
+      "label": 2,
+      "sha256": "9554e9a19a81fdb395d211435358b162de31c2b3acb020e6e863ae43f136a999",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_train/seg_train/mountain/16696.jpg",
+      "split": "train",
+      "class_name": "mountain",
+      "label": 3,
+      "sha256": "9554e9a19a81fdb395d211435358b162de31c2b3acb020e6e863ae43f136a999",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ],
+  "8ff16db30c2e6742a953797dcfa43cad0e07fc420b0538b35f9043bc2e3179fc": [
+    {
+      "relative_path": "seg_train/seg_train/glacier/8608.jpg",
+      "split": "train",
+      "class_name": "glacier",
+      "label": 2,
+      "sha256": "8ff16db30c2e6742a953797dcfa43cad0e07fc420b0538b35f9043bc2e3179fc",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_train/seg_train/mountain/19959.jpg",
+      "split": "train",
+      "class_name": "mountain",
+      "label": 3,
+      "sha256": "8ff16db30c2e6742a953797dcfa43cad0e07fc420b0538b35f9043bc2e3179fc",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ],
+  "f90543d3b4dcef4e278a047de7626fa3d5122abd7f3458e047887c553bb58d58": [
+    {
+      "relative_path": "seg_train/seg_train/mountain/14341.jpg",
+      "split": "train",
+      "class_name": "mountain",
+      "label": 3,
+      "sha256": "f90543d3b4dcef4e278a047de7626fa3d5122abd7f3458e047887c553bb58d58",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_test/seg_test/glacier/21469.jpg",
+      "split": "test",
+      "class_name": "glacier",
+      "label": 2,
+      "sha256": "f90543d3b4dcef4e278a047de7626fa3d5122abd7f3458e047887c553bb58d58",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ],
+  "8abeea822034f73fc5c499b11e1f893ee0144e48055a5f46cc9bbac372fe2ce8": [
+    {
+      "relative_path": "seg_train/seg_train/mountain/7037.jpg",
+      "split": "train",
+      "class_name": "mountain",
+      "label": 3,
+      "sha256": "8abeea822034f73fc5c499b11e1f893ee0144e48055a5f46cc9bbac372fe2ce8",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_train/seg_train/sea/6337.jpg",
+      "split": "train",
+      "class_name": "sea",
+      "label": 4,
+      "sha256": "8abeea822034f73fc5c499b11e1f893ee0144e48055a5f46cc9bbac372fe2ce8",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ],
+  "4f93f75b82d15e088b08ab1ba544de749e139437628d9b38b317e67c663abf4c": [
+    {
+      "relative_path": "seg_train/seg_train/street/10408.jpg",
+      "split": "train",
+      "class_name": "street",
+      "label": 5,
+      "sha256": "4f93f75b82d15e088b08ab1ba544de749e139437628d9b38b317e67c663abf4c",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    },
+    {
+      "relative_path": "seg_test/seg_test/buildings/20805.jpg",
+      "split": "test",
+      "class_name": "buildings",
+      "label": 0,
+      "sha256": "4f93f75b82d15e088b08ab1ba544de749e139437628d9b38b317e67c663abf4c",
+      "width": 150,
+      "height": 150,
+      "original_mode": "RGB"
+    }
+  ]
+}

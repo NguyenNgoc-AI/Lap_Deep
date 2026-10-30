@@ -1,0 +1,9 @@
+{
+  "status": "PASSED",
+  "time": "2026-10-30T11:21:28.048028+00:00",
+  "file": "D:\\Lab2\\notebooks\\lab2.ipynb",
+  "change": "Added dataset source/download/overview Markdown cell",
+  "existing_cells_unchanged": true,
+  "code_outputs_unchanged": true,
+  "sha256": "a8e3126a32fdca67c2709a3575e88b8691797fd7006c82c42709541c56e31ff5"
+}

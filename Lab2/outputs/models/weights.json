@@ -1,0 +1,16 @@
+{
+  "vgg11": {
+    "enum": "VGG11_Weights.IMAGENET1K_V1",
+    "url": "https://download.pytorch.org/models/vgg11-8a719046.pth",
+    "path": "D:\\Lab2\\data\\weights\\checkpoints\\vgg11-8a719046.pth",
+    "sha256": "8a7190461cb581dbcbd2c3b58f43cf12a0bca3ccf92898f867e4a9e9b898c464",
+    "bytes": 531460341
+  },
+  "densenet121": {
+    "enum": "DenseNet121_Weights.IMAGENET1K_V1",
+    "url": "https://download.pytorch.org/models/densenet121-a639ec97.pth",
+    "path": "D:\\Lab2\\data\\weights\\checkpoints\\densenet121-a639ec97.pth",
+    "sha256": "a639ec97d7c33b07ae66f0b5fb7d0192f95a3b11b7576c66c0126c2a727c4395",
+    "bytes": 32342954
+  }
+}

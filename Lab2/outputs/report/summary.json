@@ -1,0 +1,425 @@
+{
+  "status": "COMPLETED",
+  "created": "2026-10-30T08:10:54.218283+00:00",
+  "selection": {
+    "selected_before_test": "2026-10-30T08:04:08.062473+00:00",
+    "final_run": "R07",
+    "best_transfer": "R02",
+    "best_transfer_per_model": {
+      "vgg11": "R02",
+      "densenet121": "R06"
+    },
+    "test_runs": [
+      "R02",
+      "R06",
+      "R07"
+    ],
+    "rule": "validation accuracy desc, loss asc, epoch asc, run ID asc",
+    "provenance_hash": "f0030e0596d66c5ec99b6612e560d596c8761511b28dbbc4f40caa2b6460be18"
+  },
+  "data_counts": {
+    "train": 11208,
+    "validation": 2798,
+    "test": 3000
+  },
+  "experiments": [
+    {
+      "run": "R01",
+      "model": "vgg11",
+      "mode": "transfer",
+      "lr": 0.001,
+      "batch": 8,
+      "epochs": 5,
+      "best_epoch": 5,
+      "val_accuracy": 0.9099356683345247,
+      "val_loss": 0.3007435174843264,
+      "train_validation_seconds": 1168.8084387000417
+    },
+    {
+      "run": "R02",
+      "model": "vgg11",
+      "mode": "transfer",
+      "lr": 0.0003,
+      "batch": 8,
+      "epochs": 5,
+      "best_epoch": 5,
+      "val_accuracy": 0.9152966404574696,
+      "val_loss": 0.23594580607958407,
+      "train_validation_seconds": 1079.7683061998105
+    },
+    {
+      "run": "R03",
+      "model": "vgg11",
+      "mode": "transfer",
+      "lr": 0.001,
+      "batch": 16,
+      "epochs": 5,
+      "best_epoch": 5,
+      "val_accuracy": 0.9124374553252323,
+      "val_loss": 0.26259042246404,
+      "train_validation_seconds": 995.9853024998447
+    },
+    {
+      "run": "R04",
+      "model": "densenet121",
+      "mode": "transfer",
+      "lr": 0.001,
+      "batch": 8,
+      "epochs": 5,
+      "best_epoch": 2,
+      "val_accuracy": 0.9102930664760543,
+      "val_loss": 0.22992725744867615,
+      "train_validation_seconds": 1061.2549159997143
+    },
+    {
+      "run": "R05",
+      "model": "densenet121",
+      "mode": "transfer",
+      "lr": 0.0003,
+      "batch": 8,
+      "epochs": 5,
+      "best_epoch": 5,
+      "val_accuracy": 0.9110078627591136,
+      "val_loss": 0.23133449624721933,
+      "train_validation_seconds": 1169.6927298001247
+    },
+    {
+      "run": "R06",
+      "model": "densenet121",
+      "mode": "transfer",
+      "lr": 0.001,
+      "batch": 16,
+      "epochs": 5,
+      "best_epoch": 3,
+      "val_accuracy": 0.9120800571837027,
+      "val_loss": 0.23673135055105246,
+      "train_validation_seconds": 1003.1814308002358
+    },
+    {
+      "run": "R07",
+      "model": "vgg11",
+      "mode": "finetune",
+      "lr": 1e-05,
+      "batch": 8,
+      "epochs": 3,
+      "best_epoch": 3,
+      "val_accuracy": 0.9203002144388849,
+      "val_loss": 0.24939551214469002,
+      "train_validation_seconds": 859.4216665999265
+    }
+  ],
+  "test": [
+    {
+      "run": "R02",
+      "checkpoint_sha256": "4536dae71d7a4d0bd43b56abe5c4252e5670bf2808bc60a68a38f301b20d92e0",
+      "evaluated": "2026-10-30T08:07:45.731989+00:00",
+      "predictions_sha256": "9a595d173d2bf0a04980caf67b1b1e5d920026f38f09577a3e47728697135e6a",
+      "loss": 0.21321858948344985,
+      "accuracy": 0.917,
+      "macro_f1": 0.9185855154809796,
+      "samples": 3000,
+      "confusion_matrix": [
+        [
+          394,
+          0,
+          0,
+          0,
+          3,
+          40
+        ],
+        [
+          0,
+          471,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          5,
+          441,
+          80,
+          23,
+          4
+        ],
+        [
+          0,
+          5,
+          41,
+          468,
+          10,
+          1
+        ],
+        [
+          1,
+          1,
+          7,
+          5,
+          496,
+          0
+        ],
+        [
+          18,
+          0,
+          0,
+          0,
+          2,
+          481
+        ]
+      ],
+      "per_class": [
+        {
+          "name": "buildings",
+          "precision": 0.9539951573849879,
+          "recall": 0.9016018306636155,
+          "f1": 0.9270588235294118,
+          "support": 437
+        },
+        {
+          "name": "forest",
+          "precision": 0.9771784232365145,
+          "recall": 0.9936708860759493,
+          "f1": 0.9853556485355647,
+          "support": 474
+        },
+        {
+          "name": "glacier",
+          "precision": 0.9,
+          "recall": 0.7974683544303798,
+          "f1": 0.8456375838926175,
+          "support": 553
+        },
+        {
+          "name": "mountain",
+          "precision": 0.8447653429602888,
+          "recall": 0.8914285714285715,
+          "f1": 0.8674698795180723,
+          "support": 525
+        },
+        {
+          "name": "sea",
+          "precision": 0.9271028037383178,
+          "recall": 0.9725490196078431,
+          "f1": 0.9492822966507176,
+          "support": 510
+        },
+        {
+          "name": "street",
+          "precision": 0.9144486692015209,
+          "recall": 0.9600798403193613,
+          "f1": 0.9367088607594938,
+          "support": 501
+        }
+      ]
+    },
+    {
+      "run": "R06",
+      "checkpoint_sha256": "b4dbcd7d5f6b96d0d109264edf0af9c90813944ff1047fc04efa1335938cf439",
+      "evaluated": "2026-10-30T08:08:39.956704+00:00",
+      "predictions_sha256": "e90b693b1b04976e3c2ae8044f3dc99c169faeed473efda13415be419fe674d0",
+      "loss": 0.22300049411070844,
+      "accuracy": 0.9153333333333333,
+      "macro_f1": 0.9168470600070399,
+      "samples": 3000,
+      "confusion_matrix": [
+        [
+          408,
+          0,
+          0,
+          0,
+          4,
+          25
+        ],
+        [
+          0,
+          473,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          441,
+          87,
+          22,
+          0
+        ],
+        [
+          2,
+          2,
+          40,
+          472,
+          9,
+          0
+        ],
+        [
+          2,
+          1,
+          4,
+          4,
+          497,
+          2
+        ],
+        [
+          43,
+          0,
+          0,
+          1,
+          2,
+          455
+        ]
+      ],
+      "per_class": [
+        {
+          "name": "buildings",
+          "precision": 0.8927789934354485,
+          "recall": 0.9336384439359268,
+          "f1": 0.9127516778523489,
+          "support": 437
+        },
+        {
+          "name": "forest",
+          "precision": 0.9916142557651991,
+          "recall": 0.9978902953586498,
+          "f1": 0.9947423764458465,
+          "support": 474
+        },
+        {
+          "name": "glacier",
+          "precision": 0.9074074074074074,
+          "recall": 0.7974683544303798,
+          "f1": 0.848893166506256,
+          "support": 553
+        },
+        {
+          "name": "mountain",
+          "precision": 0.8368794326241135,
+          "recall": 0.8990476190476191,
+          "f1": 0.866850321395776,
+          "support": 525
+        },
+        {
+          "name": "sea",
+          "precision": 0.9307116104868914,
+          "recall": 0.9745098039215686,
+          "f1": 0.9521072796934866,
+          "support": 510
+        },
+        {
+          "name": "street",
+          "precision": 0.9439834024896265,
+          "recall": 0.908183632734531,
+          "f1": 0.9257375381485249,
+          "support": 501
+        }
+      ]
+    },
+    {
+      "run": "R07",
+      "checkpoint_sha256": "fe6781a7fa567f866de2d702908ddc95401f339d30a19aadf3de388af1ec442c",
+      "evaluated": "2026-10-30T08:09:29.903534+00:00",
+      "predictions_sha256": "e9e6b03aa0db044ef045e05e2b12546fa38674c59321adcf7c824cb0aad29612",
+      "loss": 0.2033495551626329,
+      "accuracy": 0.928,
+      "macro_f1": 0.9297179852881522,
+      "samples": 3000,
+      "confusion_matrix": [
+        [
+          411,
+          0,
+          1,
+          0,
+          2,
+          23
+        ],
+        [
+          0,
+          470,
+          2,
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          3,
+          468,
+          67,
+          12,
+          2
+        ],
+        [
+          0,
+          2,
+          45,
+          469,
+          8,
+          1
+        ],
+        [
+          2,
+          1,
+          6,
+          4,
+          497,
+          0
+        ],
+        [
+          29,
+          0,
+          0,
+          1,
+          2,
+          469
+        ]
+      ],
+      "per_class": [
+        {
+          "name": "buildings",
+          "precision": 0.927765237020316,
+          "recall": 0.9405034324942791,
+          "f1": 0.934090909090909,
+          "support": 437
+        },
+        {
+          "name": "forest",
+          "precision": 0.9873949579831933,
+          "recall": 0.9915611814345991,
+          "f1": 0.9894736842105263,
+          "support": 474
+        },
+        {
+          "name": "glacier",
+          "precision": 0.896551724137931,
+          "recall": 0.8462929475587704,
+          "f1": 0.8706976744186047,
+          "support": 553
+        },
+        {
+          "name": "mountain",
+          "precision": 0.8653136531365314,
+          "recall": 0.8933333333333333,
+          "f1": 0.8791002811621369,
+          "support": 525
+        },
+        {
+          "name": "sea",
+          "precision": 0.9521072796934866,
+          "recall": 0.9745098039215686,
+          "f1": 0.9631782945736435,
+          "support": 510
+        },
+        {
+          "name": "street",
+          "precision": 0.9474747474747475,
+          "recall": 0.936127744510978,
+          "f1": 0.9417670682730923,
+          "support": 501
+        }
+      ]
+    }
+  ]
+}

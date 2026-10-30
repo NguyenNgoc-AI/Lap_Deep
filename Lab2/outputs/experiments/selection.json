@@ -1,0 +1,16 @@
+{
+  "selected_before_test": "2026-10-30T08:04:08.062473+00:00",
+  "final_run": "R07",
+  "best_transfer": "R02",
+  "best_transfer_per_model": {
+    "vgg11": "R02",
+    "densenet121": "R06"
+  },
+  "test_runs": [
+    "R02",
+    "R06",
+    "R07"
+  ],
+  "rule": "validation accuracy desc, loss asc, epoch asc, run ID asc",
+  "provenance_hash": "f0030e0596d66c5ec99b6612e560d596c8761511b28dbbc4f40caa2b6460be18"
+}

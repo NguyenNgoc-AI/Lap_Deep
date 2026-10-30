@@ -1,0 +1,15 @@
+{
+  "README.md": "e6aed5553cd8e54179a2363fc7483c0785553b64490970cbf0a6615c45700d92",
+  "requirements.txt": "8b352880f474cb007cac801f1d811d7a6821b9694af202798163197183739d62",
+  "configs\\experiments.json": "453728723705d4a740a93b64c404420aa8bc6ccf573e48fdc5f5b216da550f24",
+  "notebooks\\main.ipynb": "f4f856b06600ba82cdeb970f05b6af199dd41906dd6e5ec3504c945016c6c035",
+  "src\\common.py": "bb1a4ec5cb64275adfd329db31a4ab09f7fa68faba224e2f107b97799505eba1",
+  "tests\\test_environment.py": "59069eaadfb1e369b8237b5dadb6a3fa31ddbce604fbeac820a3770709c35336",
+  "tests\\test_pipeline.py": "69b46fc2faa1fb86083235f017061d6d72a4e043d3aa690b55573de97730fd3c",
+  "tests\\verify_artifacts.py": "4efbb1a07a32b60d91d273c178ddf2bf66340ecce66388aec7a3d73da5fa2b3b",
+  "src\\phases\\phase_01_environment.py": "dd6dfbd4f1ab2bd8d992f354ba7327a86bce567770cd277dc9f053ef9f0a79e6",
+  "src\\phases\\phase_02_data.py": "857556500b6a78fa305562578942a8f50677c1aabc54fd3e7dd131db48bea9fd",
+  "src\\phases\\phase_03_models.py": "453ae9a250ff74f7a258836b6152a5e09058854e09cab3ce75e4f4d78cbe8f5c",
+  "src\\phases\\phase_04_train.py": "44db282737d917022701236be267408ef501af0a166211844dc381e86f4da127",
+  "src\\phases\\phase_05_evaluate.py": "33bddc21efbd47fb9e661879a6bff7450a174026b9cc97276581523fa7d09f78"
+}

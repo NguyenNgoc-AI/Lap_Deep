@@ -1,0 +1,17 @@
+{
+  "created": "2026-10-30T10:07:09.894210+00:00",
+  "original_selection_sha256": "421280efed35b5c82d2cab529559aa897f724949c69b209bc2ca79efafd0c7fe",
+  "data_manifest_sha256": "44b89a4696b93286e21a1e8c83ad4a2bcadf5e32ab8a3759268c5df2b6aa067d",
+  "cv_fingerprint": "bfe1a17daeffccc8060a440dc0bbc3b6691db380cfa266f99d3e0800db306a0c",
+  "seed": 42,
+  "device_for_new_analysis": "xpu",
+  "original_runs": [
+    "6608b2b74d84326da133c4d06747419f007329ac95d1a0726b383f0ff25799d3",
+    "9d9eb0790db243bfe0a3a2f3341515b9b6efc4ffa25a221afac9c6bb710fab25",
+    "8e4c942e2c7d8b9ef1c612a4c6cc6e0761b344f91677a6234a0817e496bbc8db",
+    "74458f4532acb6cfd75a57de273e102eeff652a2d841a6d0b8a1c2c3ed1d7dbd",
+    "2acac0df9595c95ebbff7a4958bbb91770c9ddaab9c9a7653ac91ba5c9c57c72",
+    "a9ee2be6bccf719c4381979e31ce03dafaee9baf26aea497efa4acc640159f3f",
+    "29922b919ca87cdd0625c24ee7800046919f7e3ec71a5fd40f3543e521390124"
+  ]
+}

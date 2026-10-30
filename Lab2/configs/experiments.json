@@ -1,0 +1,17 @@
+{
+  "workflow": "WF-002-v1.0",
+  "seed": 42,
+  "device": "xpu",
+  "data_version": 2,
+  "validation_fraction": 0.2,
+  "num_workers": 0,
+  "runs": [
+    {"id":"R01","model":"vgg11","mode":"transfer","lr":0.001,"batch":8,"epochs":5},
+    {"id":"R02","model":"vgg11","mode":"transfer","lr":0.0003,"batch":8,"epochs":5},
+    {"id":"R03","model":"vgg11","mode":"transfer","lr":0.001,"batch":16,"epochs":5},
+    {"id":"R04","model":"densenet121","mode":"transfer","lr":0.001,"batch":8,"epochs":5},
+    {"id":"R05","model":"densenet121","mode":"transfer","lr":0.0003,"batch":8,"epochs":5},
+    {"id":"R06","model":"densenet121","mode":"transfer","lr":0.001,"batch":16,"epochs":5}
+  ],
+  "fine_tune":{"id":"R07","mode":"finetune","lr":0.00001,"epochs":3}
+}

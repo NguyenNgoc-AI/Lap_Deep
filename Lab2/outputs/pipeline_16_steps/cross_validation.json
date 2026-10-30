@@ -1,0 +1,47 @@
+{
+  "status": "COMPLETED",
+  "fingerprint": "bfe1a17daeffccc8060a440dc0bbc3b6691db380cfa266f99d3e0800db306a0c",
+  "protocol": {
+    "name": "densenet121_frozen_center_crop_linear_probe_v1",
+    "folds": 5,
+    "epochs": 5,
+    "lr": 0.001,
+    "batch": 256,
+    "seed": 42,
+    "feature_batch": 16
+  },
+  "created": "2026-10-30T10:07:09.782143+00:00",
+  "fold_results": [
+    {
+      "fold": 1,
+      "samples": 2804,
+      "accuracy": 0.9165477888730386,
+      "macro_f1": 0.9181282049602215
+    },
+    {
+      "fold": 2,
+      "samples": 2803,
+      "accuracy": 0.9172315376382447,
+      "macro_f1": 0.9188419177696368
+    },
+    {
+      "fold": 3,
+      "samples": 2801,
+      "accuracy": 0.9189575151731525,
+      "macro_f1": 0.9199838977186485
+    },
+    {
+      "fold": 4,
+      "samples": 2800,
+      "accuracy": 0.92,
+      "macro_f1": 0.9216342752043204
+    },
+    {
+      "fold": 5,
+      "samples": 2798,
+      "accuracy": 0.909578270192995,
+      "macro_f1": 0.9111899383754731
+    }
+  ],
+  "oof_sha256": "7791061da890ef22edb2d4b309b18b7385b89efac4297f702efbce64a7560986"
+}

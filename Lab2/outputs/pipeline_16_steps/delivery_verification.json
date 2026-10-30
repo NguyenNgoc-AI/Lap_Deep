@@ -1,0 +1,12 @@
+{
+  "status": "PASSED",
+  "time": "2026-10-30T10:10:07.372975+00:00",
+  "notebook": "D:\\Lab2\\notebooks\\intel_pipeline_16_steps.ipynb",
+  "sha256": "e301e572ab2eaca370fb0d1e170892c9eba1e20ef57bc3d42c6364118c863429",
+  "sections": 16,
+  "executed_code_cells": 17,
+  "embedded_figures": 7,
+  "original_delivery_unchanged": true,
+  "cv_mean_accuracy": 0.916463022375486,
+  "cv_sample_sd": 0.004084431377696238
+}

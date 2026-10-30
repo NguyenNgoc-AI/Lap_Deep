@@ -1,0 +1,20 @@
+{
+  "created": "2026-10-30T12:29:35.654166+00:00",
+  "original_run": "R07",
+  "original_fingerprint": "29922b919ca87cdd0625c24ee7800046919f7e3ec71a5fd40f3543e521390124",
+  "resume_from_epoch": 3,
+  "added_epochs": [
+    4,
+    5
+  ],
+  "original_checkpoint_hashes": {
+    "best.pt": "fe6781a7fa567f866de2d702908ddc95401f339d30a19aadf3de388af1ec442c",
+    "last.pt": "5f286da3a2f9d7d189a1bb7bdc2385aeff0b67ae6a418f93279b4afc6bb4b71e"
+  },
+  "extension_script_sha256": "c80096c8b6f55e84d5609373a2f9c8bfa44c88249a0c7050b9e3c756d9e4b028",
+  "interpretation": "Exploratory continuation after original test was viewed; no new test evaluation",
+  "imported_checkpoint_hashes": {
+    "best.pt": "e7eda468d219b260c6967c3bbd25147b22bf15accc37d574ab6e2daa2e151c0c",
+    "last.pt": "9fa1fffb537b7307fc069a1ecf75403b1cfee2a6be25e88c93220ff8848600b5"
+  }
+}

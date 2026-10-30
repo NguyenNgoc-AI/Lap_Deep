@@ -1,0 +1,14 @@
+{
+  "status": "PASSED",
+  "finished": "2026-10-30T10:07:16.532646+00:00",
+  "sections": 16,
+  "original_runs": 7,
+  "original_epochs": 33,
+  "test_samples": 3000,
+  "cv_folds": 5,
+  "cv_oof_samples": 14006,
+  "cv_protocol": "densenet121_frozen_center_crop_linear_probe_v1",
+  "gradcam_examples": 2,
+  "final_run": "R07",
+  "note": "CV is a separate frozen DenseNet linear probe, not cross-validation of R07."
+}

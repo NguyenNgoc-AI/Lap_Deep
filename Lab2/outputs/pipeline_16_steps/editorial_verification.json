@@ -1,0 +1,27 @@
+{
+  "status": "PASSED",
+  "time": "2026-10-30T10:29:20.658867+00:00",
+  "changed_sections": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "code_and_outputs_unchanged": true,
+  "user_headings_intro_and_cell_structure_preserved": true,
+  "before_sha256": "e0ce303b33a458f3bd9734e89eeaa2b3e5fdb1a9b2a6f0d3d014a4a9697a9d22",
+  "after_sha256": "694a586f7149d59cbc85d9bb579a90f9bc6ce7caaa0af4b8ab579ff1fc837100",
+  "validation": "nbformat and exact equality of every code cell, execution_count, output and metadata; no recomputation required"
+}

@@ -1,0 +1,5 @@
+{
+  "selected_before_test": "2026-10-30T08:10:47.579623+00:00",
+  "winner": "R02",
+  "rule": "validation accuracy desc, loss asc, epoch asc, run ID asc"
+}
