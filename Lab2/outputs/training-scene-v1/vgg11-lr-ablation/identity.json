@@ -1,0 +1,23 @@
+{
+  "model": "vgg11",
+  "spec": {
+    "seed": 42,
+    "batch": 8,
+    "max_epoch": 20,
+    "fine_lr": 3e-06,
+    "smoke": false
+  },
+  "device": "xpu",
+  "manifest": "b90d99ee2d0c221171bbc8127c695fa938b4415fd39437b658cc11f9eab7b19a",
+  "sources": {
+    "src\\common.py": "bb1a4ec5cb64275adfd329db31a4ab09f7fa68faba224e2f107b97799505eba1",
+    "src\\phases\\phase_01_environment.py": "dd6dfbd4f1ab2bd8d992f354ba7327a86bce567770cd277dc9f053ef9f0a79e6",
+    "src\\phases\\phase_02_data.py": "f49e7caca3ae61b00bdbe4358728182582b94c8fec25e729e89229847e165e4f",
+    "src\\phases\\phase_03_models.py": "453ae9a250ff74f7a258836b6152a5e09058854e09cab3ce75e4f4d78cbe8f5c",
+    "src\\phases\\phase_04_train.py": "9db1ff8792393c8ff9526c6d541b51c059143dcdd0e6424b151e107de7c077ae",
+    "src\\phases\\phase_05_evaluate.py": "33bddc21efbd47fb9e661879a6bff7450a174026b9cc97276581523fa7d09f78"
+  },
+  "weights": "8a7190461cb581dbcbd2c3b58f43cf12a0bca3ccf92898f867e4a9e9b898c464",
+  "parent": "cefa87b0024a3b3e6a6e4904d7af02a8bd013372ef40f289c126f475149dc439",
+  "branch_rng": "a05dfdca2da7cf5ac482a11b43fbb9872c9b8e1bec13167514c0b975cf079ff1"
+}

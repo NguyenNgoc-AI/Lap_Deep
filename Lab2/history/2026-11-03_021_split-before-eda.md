@@ -1,0 +1,1 @@
+Theo yêu cầu, đổi thứ tự mục 02 và 03 trong notebooks/lab2_pipeline.ipynb thành Data Split rồi EDA. Chuyển khai báo splits tới ô dùng đầu tiên. Backup tại history/checkpoints/pipeline-before-split-eda. Đã chạy đủ 10 ô code từ đầu, xác nhận 16 mục đánh số liên tục và schema hợp lệ.

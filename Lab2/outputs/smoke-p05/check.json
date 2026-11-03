@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "reference": {
+    "path": "seg_test/seg_test/buildings/20057.jpg",
+    "truth": "buildings",
+    "predicted": "buildings",
+    "softmax": "0.9992893934249878"
+  },
+  "actual": {
+    "image": "D:\\Lab2\\data\\raw\\intel-v2\\seg_test\\seg_test\\buildings\\20057.jpg",
+    "image_sha256": "a4dbd8a5a02d063f0b8a3107cac57aec362163e437a3a9c17e3cfea52bc1e8fb",
+    "run": "densenet121",
+    "model": "densenet121",
+    "stage": "finetune",
+    "epoch": 9,
+    "checkpoint_sha256": "11a2fc65059b38dad9cfaffd88764b330563e1e31f328b4d782b47cde057ef3f",
+    "index": 0,
+    "label": "buildings",
+    "softmax": 0.9992893934249878
+  },
+  "abs_difference": 0.0,
+  "tolerance": 0.0001
+}

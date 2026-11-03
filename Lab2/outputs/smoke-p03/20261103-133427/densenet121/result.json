@@ -1,0 +1,15 @@
+{
+  "status": "PASSED",
+  "model": "densenet121",
+  "handoff_epoch": 5,
+  "best_epoch": 7,
+  "validation_reload": {
+    "loss": 1.5356834332148235,
+    "accuracy": 0.375,
+    "samples": 24,
+    "seconds": 0.381561900023371
+  },
+  "last_epoch": 7,
+  "stop_reason": "smoke_epoch_budget",
+  "best_sha256": "21caed06ec3c489272dfe6acf06cdbb2b49b2ad835945f3e4ca02994a81ea560"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "PASSED",
+  "smoke": false,
+  "selected_by_validation": "densenet121",
+  "runs": [
+    "vgg11",
+    "densenet121",
+    "vgg11-lr-ablation"
+  ],
+  "manifest": "b90d99ee2d0c221171bbc8127c695fa938b4415fd39437b658cc11f9eab7b19a"
+}

@@ -1,0 +1,41 @@
+{
+  "status": "PASSED",
+  "finished": "2026-11-03T06:35:31.680716+00:00",
+  "device": "xpu",
+  "manifest_sha256": "b90d99ee2d0c221171bbc8127c695fa938b4415fd39437b658cc11f9eab7b19a",
+  "seed": 42,
+  "train_samples": 24,
+  "val_samples": 24,
+  "models": [
+    {
+      "status": "PASSED",
+      "model": "vgg11",
+      "handoff_epoch": 5,
+      "best_epoch": 7,
+      "validation_reload": {
+        "loss": 1.0263354380925496,
+        "accuracy": 0.7916666666666666,
+        "samples": 24,
+        "seconds": 0.4140234999358654
+      },
+      "last_epoch": 7,
+      "stop_reason": "smoke_epoch_budget",
+      "best_sha256": "ba8c62cc5b4af418b828b197468360954dc56ad31f05641b3980e966ca3ca8d5"
+    },
+    {
+      "status": "PASSED",
+      "model": "densenet121",
+      "handoff_epoch": 5,
+      "best_epoch": 7,
+      "validation_reload": {
+        "loss": 1.5356834332148235,
+        "accuracy": 0.375,
+        "samples": 24,
+        "seconds": 0.381561900023371
+      },
+      "last_epoch": 7,
+      "stop_reason": "smoke_epoch_budget",
+      "best_sha256": "21caed06ec3c489272dfe6acf06cdbb2b49b2ad835945f3e4ca02994a81ea560"
+    }
+  ]
+}

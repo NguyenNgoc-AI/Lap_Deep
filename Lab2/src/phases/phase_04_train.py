@@ -1,8 +1,9 @@
-"""Seven sequential experiments, validation-only selection and epoch-boundary resume."""
+"""Scene-grouped two-stage training, validation selection and epoch-boundary resume."""
 import gc
 import hashlib
 import importlib.metadata
 import json
+from pathlib import Path
 import os
 import random
 import time
@@ -91,138 +92,187 @@ def epoch(model, batches, device, optimizer=None):
             'seconds': time.perf_counter() - started}
 
 
-def train_run(spec, device, inputs, parent=None):
-    directory = OUT / spec['id']
-    directory.mkdir(parents=True, exist_ok=True)
-    identity = {'spec': spec, 'device': device, 'inputs': inputs,
-                'parent': None if parent is None else {'id': parent['id'], 'checkpoint': sha256(OUT / parent['id'] / 'best.pt')}}
-    run_hash = fingerprint(identity)
-    metadata = directory / 'identity.json'
-    if metadata.exists() and read_json(metadata)['fingerprint'] != run_hash:
-        raise ValueError(f'Stale experiment: {spec["id"]}; preserve it and create a reviewed new experiment')
-    if not metadata.exists():
-        if any(directory.iterdir()):
-            raise ValueError(f'Unidentified existing output: {directory}')
-        write_json(metadata, {'fingerprint': run_hash, **identity})
-    result_file = directory / 'result.json'
-    if result_file.exists():
-        result = read_json(result_file)
-        if result['fingerprint'] == run_hash and result['status'] == 'COMPLETED':
-            for name in ('best.pt', 'last.pt'):
-                if sha256(directory / name) != result['checkpoint_hashes'][name]:
-                    raise ValueError(f'Checkpoint changed: {directory / name}')
-            print(f'{spec["id"]}: verified completed run', flush=True)
-            return result
-    seed_all(config()['seed'])
-    generator = torch.Generator().manual_seed(config()['seed'])
-    model = build(spec['model'], spec['mode'], config()['seed']).to(device)
-    optimizer = torch.optim.Adam([p for p in model.parameters() if p.requires_grad], lr=spec['lr'])
-    history, best, start_epoch = [], None, 1
-    last_path = directory / 'last.pt'
-    if last_path.exists():
-        checkpoint = torch.load(last_path, map_location='cpu', weights_only=False)
-        if checkpoint['fingerprint'] != run_hash:
-            raise ValueError('Resume fingerprint mismatch')
-        model.load_state_dict(checkpoint['model'])
-        optimizer.load_state_dict(checkpoint['optimizer'])
-        history, best = checkpoint['history'], checkpoint['best']
-        start_epoch = checkpoint['epoch'] + 1
-        best_path = directory / 'best.pt'
-        if best['epoch'] == checkpoint['epoch']:
-            # Repair a crash between the atomic last.pt and best.pt writes.
-            save_checkpoint(best_path, checkpoint)
-        elif not best_path.exists():
-            raise ValueError('Missing earlier best checkpoint')
-        restore_rng(checkpoint['rng'], generator)
-        del checkpoint
-        print(f'{spec["id"]}: resume at epoch {start_epoch}', flush=True)
-    elif parent is not None:
-        checkpoint = torch.load(OUT / parent['id'] / 'best.pt', map_location='cpu', weights_only=False)
-        model.load_state_dict(checkpoint['model'])
-        del checkpoint
-    train_batches = loader('train', spec['batch'], generator)
-    val_batches = loader('validation', spec['batch'])
-    write_json(directory / 'status.json', {'status': 'RUNNING', 'updated': now(), 'next_epoch': start_epoch})
-    with SummaryWriter(str(directory / 'tensorboard'), purge_step=0 if start_epoch > 1 else None) as writer:
-        # Checkpoint history is authoritative if interruption happened before log flushing.
-        for row in history:
-            for split, prefix in [('train', 'train'), ('validation', 'val')]:
-                for metric in ('loss', 'accuracy', 'seconds'):
-                    writer.add_scalar(f'{split}/{metric}', row[f'{prefix}_{metric}'], row['epoch'])
-        for number in range(start_epoch, spec['epochs'] + 1):
-            print(f'{spec["id"]} {spec["model"]} {spec["mode"]}: epoch {number}/{spec["epochs"]}', flush=True)
-            train = epoch(model, train_batches, device, optimizer)
-            val = epoch(model, val_batches, device)
-            row = {'id': spec['id'], 'epoch': number, 'train_loss': train['loss'], 'train_accuracy': train['accuracy'],
-                   'val_loss': val['loss'], 'val_accuracy': val['accuracy'], 'train_seconds': train['seconds'],
-                   'val_seconds': val['seconds'], 'train_samples': train['samples'], 'val_samples': val['samples']}
-            history.append(row)
-            improved = best is None or score(row) < score(best)
-            if improved:
-                best = row
-            checkpoint = {'fingerprint': run_hash, 'spec': spec, 'epoch': number,
-                          'model': {n: p.detach().cpu() for n, p in model.state_dict().items()},
-                          'optimizer': optimizer.state_dict(), 'history': history, 'best': best,
-                          'rng': rng_state(generator, device)}
-            save_checkpoint(last_path, checkpoint)
-            if improved:
-                save_checkpoint(directory / 'best.pt', checkpoint)
-            del checkpoint
-            write_json(directory / 'history.json', history)
-            for split, values in [('train', train), ('validation', val)]:
-                for metric in ('loss', 'accuracy', 'seconds'):
-                    writer.add_scalar(f'{split}/{metric}', values[metric], number)
-            writer.flush()
-            print(f'{spec["id"]} epoch {number}: train={train["accuracy"]:.4f} val={val["accuracy"]:.4f} val_loss={val["loss"]:.4f}', flush=True)
-            write_json(directory / 'status.json', {'status': 'RUNNING', 'updated': now(), 'next_epoch': number + 1})
-    result = {'status': 'COMPLETED', 'id': spec['id'], 'spec': spec, 'device': device, 'best': best,
-              'fingerprint': run_hash, 'finished': now(), 'history': history,
-              'seconds': sum(r['train_seconds'] + r['val_seconds'] for r in history),
-              'checkpoint_hashes': {n: sha256(directory / n) for n in ('best.pt', 'last.pt')}}
-    write_json(result_file, result)
-    write_json(directory / 'status.json', {'status': 'COMPLETED', 'updated': now()})
-    del model, optimizer, train_batches, val_batches
-    gc.collect()
-    if device == 'xpu':
-        torch.xpu.empty_cache()
+def stop_state(loss, reference, stale, delta=1e-4):
+    if reference - loss >= delta:
+        return loss, 0
+    return reference, stale + 1
+
+
+def datasets(smoke):
+    from PIL import Image
+    from torch.utils.data import Subset
+    from src.phases.phase_02_data import Scenes, RAW, rgb_digest, CLASSES
+    result = []
+    for split in ('train', 'validation'):
+        data = Scenes(split)
+        indices = list(range(len(data)))
+        if smoke:
+            rng = random.Random(42)
+            indices = [i for label in range(len(CLASSES)) for i in
+                       rng.sample([j for j,r in enumerate(data.rows) if int(r['label']) == label], 4)]
+        for i in indices:
+            row = data.rows[i]
+            with Image.open(RAW / row['relative_path']) as image:
+                if rgb_digest(image) != row['sha256']:
+                    raise ValueError(f"Pixel content changed: {row['relative_path']}")
+        result.append(Subset(data, indices))
     return result
 
 
-def run():
-    settings = config()
-    preflight = read_json(ROOT / 'outputs/models/preflight.json')
-    if preflight['status'] != 'PASSED' or preflight['manifest_sha256'] != sha256(MANIFEST):
-        raise ValueError('Missing or stale preflight')
-    if preflight['source_hashes'] != source_hashes():
-        raise ValueError('Code changed since preflight; rerun PHASE-03')
-    inputs = provenance()
-    from src.phases.phase_02_data import RAW, Scenes
-    for split in ('train', 'validation', 'test'):
-        for row in Scenes(split).rows:
-            if sha256(RAW / row['relative_path']) != row['sha256']:
-                raise ValueError(f'Raw image changed: {row["relative_path"]}')
-    device = preflight['device']
-    results = [train_run(spec, device, inputs) for spec in settings['runs']]
-    winner = min(results, key=lambda r: score(r['best']))
-    fine_spec = {**settings['fine_tune'], 'model': winner['spec']['model'], 'batch': winner['spec']['batch']}
-    write_json(OUT / 'transfer_selection.json', {'selected_before_test': now(), 'winner': winner['id'], 'rule': 'validation accuracy desc, loss asc, epoch asc, run ID asc'})
-    results.append(train_run(fine_spec, device, inputs, parent=winner))
-    selected = min(results, key=lambda r: score(r['best']))
-    per_model = {name: min([r for r in results[:6] if r['spec']['model'] == name], key=lambda r: score(r['best']))['id']
-                 for name in ('vgg11', 'densenet121')}
-    selection = {'selected_before_test': now(), 'final_run': selected['id'], 'best_transfer': winner['id'],
-                 'best_transfer_per_model': per_model, 'test_runs': list(per_model.values()) + ['R07'],
-                 'rule': 'validation accuracy desc, loss asc, epoch asc, run ID asc', 'provenance_hash': fingerprint(inputs)}
-    existing = OUT / 'selection.json'
-    if existing.exists():
-        previous = read_json(existing)
-        if {k: v for k, v in previous.items() if k != 'selected_before_test'} != {k: v for k, v in selection.items() if k != 'selected_before_test'}:
-            raise ValueError('Selection changed after being frozen')
-        selection = previous
-    else:
-        write_json(existing, selection)
-    return {'selection': selection, 'runs': results}
+def train_stages(folder, name, device, data, spec, parent=None, pause_after=None):
+    import shutil
+    from torch.utils.data import DataLoader
+    from src.phases.phase_02_data import CLASSES
+    folder.mkdir(exist_ok=True, parents=True)
+    identity = {'model':name, 'spec':spec, 'device':device, 'manifest':sha256(MANIFEST),
+                'sources':source_hashes(), 'weights':read_json(ROOT/'outputs/models/weights.json')[name]['sha256'],
+                'parent':sha256(parent/'handoff.pt') if parent else None,
+                'branch_rng':sha256(parent/'branch-rng.pt') if parent else None}
+    key = fingerprint(identity)
+    meta = folder/'identity.json'
+    if meta.exists() and read_json(meta)!=identity:
+        raise ValueError(f'Stale run in {folder}')
+    if not meta.exists() and any(folder.iterdir()):
+        raise ValueError(f'Unidentified output: {folder}')
+    write_json(meta,identity)
+    def log(msg):
+        line=f'{now()} {folder.name} {msg}'
+        with (folder/'run.log').open('a',encoding='utf8') as f: print(line,file=f)
+        print(line,flush=True)
+
+    seed_all(42)
+    gen=torch.Generator().manual_seed(42)
+    tr=DataLoader(data[0],batch_size=8,shuffle=True,generator=gen)
+    va=DataLoader(data[1],batch_size=8)
+    last=folder/'last.pt'
+    history=[]
+    best=None
+    stale=0
+    ref=None
+    model=optimizer=None
+    stage=None
+    handoff_epoch=None
+    def setup(mode,lr):
+        m=build(name,mode,42).to(device)
+        return m,torch.optim.Adam([p for p in m.parameters() if p.requires_grad],lr=lr)
+    def load(path):
+        return torch.load(path,map_location='cpu',weights_only=False)
+    if last.exists():
+        ck=load(last)
+        if ck['fingerprint']!=key: raise ValueError('Resume identity mismatch')
+        history,best,stage,stale,ref,handoff_epoch=(ck[k] for k in ('history','best','stage','stale','reference','handoff_epoch'))
+        model,optimizer=setup(stage,history[-1]['learning_rate'])
+        model.load_state_dict(ck['model']); optimizer.load_state_dict(ck['optimizer'])
+        restore_rng(ck['rng'],gen)
+        if best['epoch']==ck['epoch']:
+            save_checkpoint(folder/'best.pt',ck)
+            if stage=='transfer': save_checkpoint(folder/'handoff.pt',ck)
+        if ck['epoch']==5: save_checkpoint(folder/'branch-rng.pt',ck['rng'])
+        del ck
+        log(f"resume after epoch {history[-1]['epoch']}")
+    elif parent:
+        shutil.copyfile(parent/'handoff.pt',folder/'best.pt')
+        base=load(folder/'best.pt')
+        best=base['best']
+        del base
+    start=history[-1]['epoch']+1 if history else (6 if parent else 1)
+    log(f'start epoch {start}')
+    with SummaryWriter(str(folder/'tensorboard'),purge_step=history[0]['epoch'] if history else None) as writer:
+        def scalars(row):
+            for field in ('train_loss','val_loss','train_accuracy','val_accuracy','learning_rate','best_val_accuracy'):
+                writer.add_scalar(field,row[field],row['epoch'])
+        for old in history: scalars(old)
+        try:
+            for number in range(start,spec['max_epoch']+1):
+                if stale>=3: break
+                mode='transfer' if number<=5 else 'finetune'
+                lr=3e-4 if number<=5 else spec['fine_lr']
+                if stage!=mode:
+                    model,optimizer=setup(mode,lr)
+                    stage=mode
+                    if number==6:
+                        source=parent or folder
+                        ck=load(source/'handoff.pt')
+                        model.load_state_dict(ck['model'])
+                        handoff_epoch=ck['epoch']
+                        ref=ck['best']['val_loss']
+                        v=epoch(model,va,device)
+                        if v['accuracy']!=ck['best']['val_accuracy'] or abs(v['loss']-ref)>1e-5:
+                            raise ValueError('Handoff validation mismatch')
+                        del ck
+                        restore_rng(load(source/'branch-rng.pt'),gen)
+                        log(f'handoff epoch {handoff_epoch}, new Adam LR {lr}')
+                t=epoch(model,tr,device,optimizer); v=epoch(model,va,device)
+                row=dict(id=folder.name,model=name,stage=stage,epoch=number,learning_rate=lr,
+                         train_samples=t['samples'],val_samples=v['samples'],train_loss=t['loss'],
+                         train_accuracy=t['accuracy'],val_accuracy=v['accuracy'],val_loss=v['loss'],
+                         epoch_time=t['seconds']+v['seconds'],handoff_epoch=handoff_epoch)
+                improved=best is None or score(row)<score(best)
+                if improved: best=row.copy()
+                if stage=='finetune': ref,stale=stop_state(v['loss'],ref,stale)
+                row.update(best_epoch=best['epoch'],best_val_accuracy=best['val_accuracy'],checkpoint_saved=improved,stale=stale)
+                history.append(row)
+                ck=dict(fingerprint=key,model=model.state_dict(),model_name=name,stage=stage,classes=CLASSES,
+                        eval_transform=str(data[1].dataset.transform),epoch=number,optimizer=optimizer.state_dict(),
+                        rng=rng_state(gen,device),reference=ref,stale=stale,best=best,history=history,handoff_epoch=handoff_epoch)
+                save_checkpoint(last,ck)
+                if improved:
+                    save_checkpoint(folder/'best.pt',ck)
+                    if stage=='transfer': save_checkpoint(folder/'handoff.pt',ck)
+                if number==5: save_checkpoint(folder/'branch-rng.pt',ck['rng'])
+                del ck
+                write_json(folder/'history.json',history)
+                scalars(row); writer.flush()
+                log(f"epoch {number} val_accuracy={v['accuracy']} val_loss={v['loss']} best={best['epoch']} saved={improved} stale={stale}")
+                if pause_after==number and stale<3 and number<spec['max_epoch']:
+                    return {'status':'PAUSED','epoch':number}
+        finally: writer.close()
+    write_json(folder/'history.json',history)
+    ck=load(folder/'best.pt')
+    model.load_state_dict(ck['model'])
+    actual=epoch(model,va,device)
+    if ck['epoch']!=best['epoch'] or actual['accuracy']!=best['val_accuracy'] or abs(actual['loss']-best['val_loss'])>1e-5:
+        raise ValueError('Best reload mismatch')
+    result=dict(status='COMPLETED',id=folder.name,device=device,best=best,history=history,validation_reload=actual,
+                stop_reason='early_stopping' if stale>=3 else 'epoch_budget',fingerprint=key)
+    write_json(folder/'result.json',result)
+    log(result['stop_reason'])
+    return result
 
 
-if __name__ == '__main__':
-    run()
+def run(smoke=False,pause_after=None):
+    from src.phases.phase_02_data import OUT as DATA
+    audit=read_json(DATA/'audit.json')
+    preflight=read_json(ROOT/'outputs/models/preflight.json')
+    if audit['split_version']!='scene-review-v1' or sha256(MANIFEST)!=audit['manifest_sha256'] or preflight['manifest_sha256']!=audit['manifest_sha256'] or preflight['status']!='PASSED':
+        raise ValueError('Manifest or P02 preflight mismatch')
+    # Only a change to the training module is independent of the P02 model checks.
+    current=source_hashes()
+    exclude=str(Path(__file__).resolve().relative_to(ROOT))
+    if {k:v for k,v in current.items() if k!=exclude}!={k:v for k,v in preflight['source_hashes'].items() if k!=exclude}:
+        raise ValueError('P02 sources changed')
+    if pause_after and not smoke: raise ValueError('pause_after is smoke-only')
+    data=datasets(smoke)
+    root=ROOT/'outputs'/('smoke-entry-p03' if smoke else 'training-scene-v1')
+    spec={'seed':42,'batch':8,'max_epoch':9 if smoke else 20,'fine_lr':1e-5,'smoke':smoke}
+    results=[]
+    for name in ('vgg11','densenet121','vgg11-lr-ablation'):
+        branch=name.endswith('ablation')
+        result=train_stages(root/name,'vgg11' if branch else name,preflight['device'],data,
+                            {**spec,'fine_lr':3e-6 if branch else 1e-5},root/'vgg11' if branch else None,pause_after)
+        if result['status']=='PAUSED': return result
+        results.append(result)
+        gc.collect()
+    selected=min(results[:2],key=lambda r:score(r['best']))
+    report=dict(status='PASSED',smoke=smoke,selected_by_validation=selected['id'],runs=[r['id'] for r in results],manifest=sha256(MANIFEST))
+    write_json(root/'report.json',report)
+    return report
+
+
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--smoke',action='store_true')
+    parser.add_argument('--pause-after',type=int)
+    args=parser.parse_args()
+    print(run(args.smoke,args.pause_after))

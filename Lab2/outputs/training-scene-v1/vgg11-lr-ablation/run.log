@@ -1,0 +1,8 @@
+2026-11-03T08:33:50.885918+00:00 vgg11-lr-ablation start epoch 6
+2026-11-03T08:34:36.000621+00:00 vgg11-lr-ablation handoff epoch 4, new Adam LR 3e-06
+2026-11-03T08:39:12.531853+00:00 vgg11-lr-ablation epoch 6 val_accuracy=0.9276763336913713 val_loss=0.21256211773977318 best=6 saved=True stale=0
+2026-11-03T08:43:48.500607+00:00 vgg11-lr-ablation epoch 7 val_accuracy=0.9273182957393483 val_loss=0.20950951796249245 best=6 saved=False stale=0
+2026-11-03T08:48:25.499026+00:00 vgg11-lr-ablation epoch 8 val_accuracy=0.9287504475474401 val_loss=0.2132605344938963 best=8 saved=True stale=1
+2026-11-03T08:53:08.512011+00:00 vgg11-lr-ablation epoch 9 val_accuracy=0.9298245614035088 val_loss=0.21039429219117511 best=9 saved=True stale=2
+2026-11-03T08:57:56.246702+00:00 vgg11-lr-ablation epoch 10 val_accuracy=0.9294665234514858 val_loss=0.21514749234834946 best=9 saved=False stale=3
+2026-11-03T08:58:40.133852+00:00 vgg11-lr-ablation early_stopping

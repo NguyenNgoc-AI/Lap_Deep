@@ -1,0 +1,232 @@
+2026-11-03T06:57:54.975380+00:00 vgg11 start epoch 1
+  train 200/1397 batches, loss=0.5269
+  train 400/1397 batches, loss=0.4177
+  train 600/1397 batches, loss=0.3600
+  train 800/1397 batches, loss=0.3309
+  train 1000/1397 batches, loss=0.3153
+  train 1200/1397 batches, loss=0.3016
+  val 200/350 batches, loss=0.3120
+2026-11-03T07:01:55.605754+00:00 vgg11 epoch 1 val_accuracy=0.9176512710347297 val_loss=0.23455833669909978 best=1 saved=True stale=0
+  train 200/1397 batches, loss=0.1910
+  train 400/1397 batches, loss=0.1971
+  train 600/1397 batches, loss=0.1979
+  train 800/1397 batches, loss=0.2010
+  train 1000/1397 batches, loss=0.2027
+  train 1200/1397 batches, loss=0.1993
+  val 200/350 batches, loss=0.2428
+2026-11-03T07:06:00.189957+00:00 vgg11 epoch 2 val_accuracy=0.9212316505549588 val_loss=0.21915734586184998 best=2 saved=True stale=0
+  train 200/1397 batches, loss=0.1658
+  train 400/1397 batches, loss=0.1682
+  train 600/1397 batches, loss=0.1695
+  train 800/1397 batches, loss=0.1700
+  train 1000/1397 batches, loss=0.1740
+  train 1200/1397 batches, loss=0.1790
+  val 200/350 batches, loss=0.2341
+2026-11-03T07:09:51.884226+00:00 vgg11 epoch 3 val_accuracy=0.9230218403150734 val_loss=0.22128626574648208 best=3 saved=True stale=0
+  train 200/1397 batches, loss=0.1527
+  train 400/1397 batches, loss=0.1523
+  train 600/1397 batches, loss=0.1584
+  train 800/1397 batches, loss=0.1599
+  train 1000/1397 batches, loss=0.1620
+  train 1200/1397 batches, loss=0.1639
+  val 200/350 batches, loss=0.2262
+2026-11-03T07:13:41.768178+00:00 vgg11 epoch 4 val_accuracy=0.9237379162191193 val_loss=0.2225192100811723 best=4 saved=True stale=0
+  train 200/1397 batches, loss=0.1559
+  train 400/1397 batches, loss=0.1527
+  train 600/1397 batches, loss=0.1507
+  train 800/1397 batches, loss=0.1506
+  train 1000/1397 batches, loss=0.1508
+  train 1200/1397 batches, loss=0.1508
+  val 200/350 batches, loss=0.2527
+2026-11-03T07:17:32.794192+00:00 vgg11 epoch 5 val_accuracy=0.9230218403150734 val_loss=0.2171922897834186 best=4 saved=False stale=0
+  val 200/350 batches, loss=0.2262
+2026-11-03T07:18:17.987959+00:00 vgg11 handoff epoch 4, new Adam LR 1e-05
+  train 200/1397 batches, loss=0.1321
+  train 400/1397 batches, loss=0.1375
+  train 600/1397 batches, loss=0.1399
+  train 800/1397 batches, loss=0.1387
+  train 1000/1397 batches, loss=0.1379
+  train 1200/1397 batches, loss=0.1384
+  val 200/350 batches, loss=0.2427
+2026-11-03T07:23:12.998162+00:00 vgg11 epoch 6 val_accuracy=0.9294665234514858 val_loss=0.21735690754665968 best=6 saved=True stale=0
+  train 200/1397 batches, loss=0.1117
+  train 400/1397 batches, loss=0.1188
+  train 600/1397 batches, loss=0.1176
+  train 800/1397 batches, loss=0.1157
+  train 1000/1397 batches, loss=0.1130
+  train 1200/1397 batches, loss=0.1136
+  val 200/350 batches, loss=0.2360
+2026-11-03T07:28:04.292200+00:00 vgg11 epoch 7 val_accuracy=0.9348370927318296 val_loss=0.20157416782913315 best=7 saved=True stale=0
+  train 200/1397 batches, loss=0.1066
+  train 400/1397 batches, loss=0.0926
+  train 600/1397 batches, loss=0.0928
+  train 800/1397 batches, loss=0.0939
+  train 1000/1397 batches, loss=0.0965
+  train 1200/1397 batches, loss=0.0973
+  val 200/350 batches, loss=0.2532
+2026-11-03T07:33:03.958652+00:00 vgg11 epoch 8 val_accuracy=0.9308986752595775 val_loss=0.210313363139673 best=7 saved=False stale=1
+  train 200/1397 batches, loss=0.0764
+  train 400/1397 batches, loss=0.0922
+  train 600/1397 batches, loss=0.0881
+  train 800/1397 batches, loss=0.0925
+  train 1000/1397 batches, loss=0.0882
+  train 1200/1397 batches, loss=0.0861
+  val 200/350 batches, loss=0.2490
+2026-11-03T07:37:52.022274+00:00 vgg11 epoch 9 val_accuracy=0.9280343716433942 val_loss=0.2244070202055445 best=7 saved=False stale=2
+  train 200/1397 batches, loss=0.0707
+  train 400/1397 batches, loss=0.0672
+  train 600/1397 batches, loss=0.0690
+  train 800/1397 batches, loss=0.0740
+  train 1000/1397 batches, loss=0.0748
+  train 1200/1397 batches, loss=0.0752
+  val 200/350 batches, loss=0.2388
+2026-11-03T07:42:40.389767+00:00 vgg11 epoch 10 val_accuracy=0.9276763336913713 val_loss=0.22719304336638715 best=7 saved=False stale=3
+  val 200/350 batches, loss=0.2360
+2026-11-03T07:43:26.219657+00:00 vgg11 early_stopping
+2026-11-03T07:43:26.558452+00:00 densenet121 start epoch 1
+  train 200/1397 batches, loss=0.9701
+  train 400/1397 batches, loss=0.7282
+  train 600/1397 batches, loss=0.6086
+  train 800/1397 batches, loss=0.5340
+  train 1000/1397 batches, loss=0.4879
+  train 1200/1397 batches, loss=0.4540
+  val 200/350 batches, loss=0.3608
+2026-11-03T07:47:20.952377+00:00 densenet121 epoch 1 val_accuracy=0.9058360186179735 val_loss=0.2768228795076629 best=1 saved=True stale=0
+  train 200/1397 batches, loss=0.2422
+  train 400/1397 batches, loss=0.2397
+  train 600/1397 batches, loss=0.2384
+  train 800/1397 batches, loss=0.2406
+  train 1000/1397 batches, loss=0.2402
+  train 1200/1397 batches, loss=0.2371
+  val 200/350 batches, loss=0.2651
+2026-11-03T07:51:05.813502+00:00 densenet121 epoch 2 val_accuracy=0.9197994987468672 val_loss=0.23441718496092803 best=2 saved=True stale=0
+  train 200/1397 batches, loss=0.2130
+  train 400/1397 batches, loss=0.2134
+  train 600/1397 batches, loss=0.2141
+  train 800/1397 batches, loss=0.2154
+  train 1000/1397 batches, loss=0.2149
+  train 1200/1397 batches, loss=0.2160
+  val 200/350 batches, loss=0.2676
+2026-11-03T07:54:51.409463+00:00 densenet121 epoch 3 val_accuracy=0.920515574650913 val_loss=0.228362502352614 best=3 saved=True stale=0
+  train 200/1397 batches, loss=0.1987
+  train 400/1397 batches, loss=0.1965
+  train 600/1397 batches, loss=0.2009
+  train 800/1397 batches, loss=0.2010
+  train 1000/1397 batches, loss=0.2025
+  train 1200/1397 batches, loss=0.2017
+  val 200/350 batches, loss=0.2508
+2026-11-03T07:58:37.561595+00:00 densenet121 epoch 4 val_accuracy=0.9237379162191193 val_loss=0.2185847854528995 best=4 saved=True stale=0
+  train 200/1397 batches, loss=0.2199
+  train 400/1397 batches, loss=0.2028
+  train 600/1397 batches, loss=0.1972
+  train 800/1397 batches, loss=0.1960
+  train 1000/1397 batches, loss=0.1954
+  train 1200/1397 batches, loss=0.1939
+  val 200/350 batches, loss=0.2558
+2026-11-03T08:02:22.811176+00:00 densenet121 epoch 5 val_accuracy=0.9226638023630505 val_loss=0.21532179138175855 best=4 saved=False stale=0
+  val 200/350 batches, loss=0.2508
+2026-11-03T08:03:07.176001+00:00 densenet121 handoff epoch 4, new Adam LR 1e-05
+  train 200/1397 batches, loss=0.1834
+  train 400/1397 batches, loss=0.1888
+  train 600/1397 batches, loss=0.1880
+  train 800/1397 batches, loss=0.1836
+  train 1000/1397 batches, loss=0.1846
+  train 1200/1397 batches, loss=0.1829
+  val 200/350 batches, loss=0.2709
+2026-11-03T08:07:28.507062+00:00 densenet121 epoch 6 val_accuracy=0.9255281059792339 val_loss=0.21389126712618067 best=6 saved=True stale=0
+  train 200/1397 batches, loss=0.1493
+  train 400/1397 batches, loss=0.1597
+  train 600/1397 batches, loss=0.1601
+  train 800/1397 batches, loss=0.1615
+  train 1000/1397 batches, loss=0.1554
+  train 1200/1397 batches, loss=0.1579
+  val 200/350 batches, loss=0.2463
+2026-11-03T08:11:45.011380+00:00 densenet121 epoch 7 val_accuracy=0.9351951306838525 val_loss=0.194491655167056 best=7 saved=True stale=0
+  train 200/1397 batches, loss=0.1466
+  train 400/1397 batches, loss=0.1331
+  train 600/1397 batches, loss=0.1369
+  train 800/1397 batches, loss=0.1309
+  train 1000/1397 batches, loss=0.1332
+  train 1200/1397 batches, loss=0.1348
+  val 200/350 batches, loss=0.2716
+2026-11-03T08:16:01.311493+00:00 densenet121 epoch 8 val_accuracy=0.9323308270676691 val_loss=0.20221768773560367 best=7 saved=False stale=1
+  train 200/1397 batches, loss=0.1204
+  train 400/1397 batches, loss=0.1268
+  train 600/1397 batches, loss=0.1271
+  train 800/1397 batches, loss=0.1323
+  train 1000/1397 batches, loss=0.1284
+  train 1200/1397 batches, loss=0.1267
+  val 200/350 batches, loss=0.2344
+2026-11-03T08:20:16.934330+00:00 densenet121 epoch 9 val_accuracy=0.9355531686358755 val_loss=0.18784185005578855 best=9 saved=True stale=0
+  train 200/1397 batches, loss=0.1177
+  train 400/1397 batches, loss=0.1126
+  train 600/1397 batches, loss=0.1139
+  train 800/1397 batches, loss=0.1121
+  train 1000/1397 batches, loss=0.1144
+  train 1200/1397 batches, loss=0.1149
+  val 200/350 batches, loss=0.2227
+2026-11-03T08:24:33.210259+00:00 densenet121 epoch 10 val_accuracy=0.9305406373075547 val_loss=0.20028809841264675 best=9 saved=False stale=1
+  train 200/1397 batches, loss=0.0994
+  train 400/1397 batches, loss=0.0998
+  train 600/1397 batches, loss=0.1034
+  train 800/1397 batches, loss=0.1040
+  train 1000/1397 batches, loss=0.1059
+  train 1200/1397 batches, loss=0.1057
+  val 200/350 batches, loss=0.2102
+2026-11-03T08:28:49.074022+00:00 densenet121 epoch 11 val_accuracy=0.9294665234514858 val_loss=0.20440276366291674 best=9 saved=False stale=2
+  train 200/1397 batches, loss=0.1004
+  train 400/1397 batches, loss=0.0940
+  train 600/1397 batches, loss=0.0891
+  train 800/1397 batches, loss=0.0893
+  train 1000/1397 batches, loss=0.0880
+  train 1200/1397 batches, loss=0.0888
+  val 200/350 batches, loss=0.2560
+2026-11-03T08:33:05.035653+00:00 densenet121 epoch 12 val_accuracy=0.9294665234514858 val_loss=0.1996917678753362 best=9 saved=False stale=3
+  val 200/350 batches, loss=0.2344
+2026-11-03T08:33:49.655684+00:00 densenet121 early_stopping
+2026-11-03T08:33:50.885918+00:00 vgg11-lr-ablation start epoch 6
+  val 200/350 batches, loss=0.2262
+2026-11-03T08:34:36.000621+00:00 vgg11-lr-ablation handoff epoch 4, new Adam LR 3e-06
+  train 200/1397 batches, loss=0.1311
+  train 400/1397 batches, loss=0.1360
+  train 600/1397 batches, loss=0.1379
+  train 800/1397 batches, loss=0.1364
+  train 1000/1397 batches, loss=0.1361
+  train 1200/1397 batches, loss=0.1362
+  val 200/350 batches, loss=0.2472
+2026-11-03T08:39:12.531853+00:00 vgg11-lr-ablation epoch 6 val_accuracy=0.9276763336913713 val_loss=0.21256211773977318 best=6 saved=True stale=0
+  train 200/1397 batches, loss=0.1271
+  train 400/1397 batches, loss=0.1325
+  train 600/1397 batches, loss=0.1299
+  train 800/1397 batches, loss=0.1282
+  train 1000/1397 batches, loss=0.1242
+  train 1200/1397 batches, loss=0.1248
+  val 200/350 batches, loss=0.2337
+2026-11-03T08:43:48.500607+00:00 vgg11-lr-ablation epoch 7 val_accuracy=0.9273182957393483 val_loss=0.20950951796249245 best=6 saved=False stale=0
+  train 200/1397 batches, loss=0.1310
+  train 400/1397 batches, loss=0.1128
+  train 600/1397 batches, loss=0.1142
+  train 800/1397 batches, loss=0.1140
+  train 1000/1397 batches, loss=0.1165
+  train 1200/1397 batches, loss=0.1177
+  val 200/350 batches, loss=0.2464
+2026-11-03T08:48:25.499026+00:00 vgg11-lr-ablation epoch 8 val_accuracy=0.9287504475474401 val_loss=0.2132605344938963 best=8 saved=True stale=1
+  train 200/1397 batches, loss=0.1074
+  train 400/1397 batches, loss=0.1213
+  train 600/1397 batches, loss=0.1159
+  train 800/1397 batches, loss=0.1201
+  train 1000/1397 batches, loss=0.1149
+  train 1200/1397 batches, loss=0.1131
+  val 200/350 batches, loss=0.2437
+2026-11-03T08:53:08.512011+00:00 vgg11-lr-ablation epoch 9 val_accuracy=0.9298245614035088 val_loss=0.21039429219117511 best=9 saved=True stale=2
+  train 200/1397 batches, loss=0.1102
+  train 400/1397 batches, loss=0.1024
+  train 600/1397 batches, loss=0.1046
+  train 800/1397 batches, loss=0.1085
+  train 1000/1397 batches, loss=0.1086
+  train 1200/1397 batches, loss=0.1077
+  val 200/350 batches, loss=0.2391
+2026-11-03T08:57:56.246702+00:00 vgg11-lr-ablation epoch 10 val_accuracy=0.9294665234514858 val_loss=0.21514749234834946 best=9 saved=False stale=3
+  val 200/350 batches, loss=0.2437
+2026-11-03T08:58:40.133852+00:00 vgg11-lr-ablation early_stopping
+{'status': 'PASSED', 'smoke': False, 'selected_by_validation': 'densenet121', 'runs': ['vgg11', 'densenet121', 'vgg11-lr-ablation'], 'manifest': 'b90d99ee2d0c221171bbc8127c695fa938b4415fd39437b658cc11f9eab7b19a'}

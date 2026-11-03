@@ -1,0 +1,1 @@
+Bổ sung giải thích hai baseline vào mục 06 của notebook pipeline. Đối chiếu số đúng của hai stage với history.json từng run và kiểm tra schema notebook. Backup: history/checkpoints/pipeline-before-baseline-detail.

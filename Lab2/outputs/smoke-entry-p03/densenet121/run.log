@@ -1,0 +1,12 @@
+2026-11-03T06:42:09.433862+00:00 densenet121 start epoch 1
+2026-11-03T06:42:13.581032+00:00 densenet121 epoch 1 val_accuracy=0.25 val_loss=1.8050769964853923 best=1 saved=True stale=0
+2026-11-03T06:42:14.815783+00:00 densenet121 epoch 2 val_accuracy=0.2916666666666667 val_loss=1.7336623271306355 best=2 saved=True stale=0
+2026-11-03T06:42:16.137754+00:00 densenet121 epoch 3 val_accuracy=0.3333333333333333 val_loss=1.6747275590896606 best=3 saved=True stale=0
+2026-11-03T06:42:17.468257+00:00 densenet121 epoch 4 val_accuracy=0.375 val_loss=1.6210558414459229 best=4 saved=True stale=0
+2026-11-03T06:42:18.723203+00:00 densenet121 epoch 5 val_accuracy=0.375 val_loss=1.5726356506347656 best=5 saved=True stale=0
+2026-11-03T06:42:19.482617+00:00 densenet121 handoff epoch 5, new Adam LR 1e-05
+2026-11-03T06:42:22.794798+00:00 densenet121 epoch 6 val_accuracy=0.3333333333333333 val_loss=1.5548940896987915 best=5 saved=False stale=0
+2026-11-03T06:42:24.040043+00:00 densenet121 epoch 7 val_accuracy=0.375 val_loss=1.5362578233083088 best=7 saved=True stale=0
+2026-11-03T06:42:25.311392+00:00 densenet121 epoch 8 val_accuracy=0.375 val_loss=1.5155889987945557 best=8 saved=True stale=0
+2026-11-03T06:42:26.553842+00:00 densenet121 epoch 9 val_accuracy=0.4166666666666667 val_loss=1.4952259063720703 best=9 saved=True stale=0
+2026-11-03T06:42:27.142542+00:00 densenet121 epoch_budget

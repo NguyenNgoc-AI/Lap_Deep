@@ -1,0 +1,2 @@
+# Notebook báo cáo theo pipeline 16 bước
+Theo yêu cầu bổ sung một file theo cấu trúc cũ, tạo notebooks/lab2_pipeline.ipynb bên cạnh lab2.ipynb. Dùng manifest cuối, kết quả P03/P04 và inference P05. Mục 11, 13, 15 giải thích phạm vi CV, kiểm định và Grad-CAM. Chạy đủ 10 ô code trong .venv, kiểm tra manifest, sự tách biệt của khóa ảnh và nhóm, checkpoint, accuracy, log TensorBoard, demo và schema nbformat. Đây là thay đổi bổ sung một notebook báo cáo.

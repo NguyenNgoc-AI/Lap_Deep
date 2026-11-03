@@ -1,0 +1,12 @@
+{
+  "image": "D:\\Lab2\\data\\raw\\intel-v2\\seg_pred\\seg_pred\\10004.jpg",
+  "image_sha256": "cfcf69a15267f9fefc9c150db868a6550e6c0ccd66655748913b09473d0292f6",
+  "run": "densenet121",
+  "model": "densenet121",
+  "stage": "finetune",
+  "epoch": 9,
+  "checkpoint_sha256": "11a2fc65059b38dad9cfaffd88764b330563e1e31f328b4d782b47cde057ef3f",
+  "index": 5,
+  "label": "street",
+  "softmax": 0.8662647604942322
+}

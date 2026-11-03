@@ -1,0 +1,15 @@
+{
+  "status": "PASSED",
+  "model": "vgg11",
+  "handoff_epoch": 5,
+  "best_epoch": 7,
+  "validation_reload": {
+    "loss": 1.0263354380925496,
+    "accuracy": 0.7916666666666666,
+    "samples": 24,
+    "seconds": 0.4140234999358654
+  },
+  "last_epoch": 7,
+  "stop_reason": "smoke_epoch_budget",
+  "best_sha256": "ba8c62cc5b4af418b828b197468360954dc56ad31f05641b3980e966ca3ca8d5"
+}

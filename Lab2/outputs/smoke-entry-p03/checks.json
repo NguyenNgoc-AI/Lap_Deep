@@ -1,0 +1,111 @@
+{
+  "vgg11": {
+    "epochs": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "reload_loss": 0.9708136320114136,
+    "tensorboard": "passed"
+  },
+  "densenet121": {
+    "epochs": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "reload_loss": 1.4952259063720703,
+    "tensorboard": "passed"
+  },
+  "vgg11-lr-ablation": {
+    "epochs": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "reload_loss": 1.0474298000335693,
+    "tensorboard": "passed"
+  },
+  "patience_control": {
+    "lr": 0,
+    "stale": [
+      1,
+      2,
+      3
+    ],
+    "stop_epoch": 8,
+    "best_epoch": 5,
+    "history": [
+      {
+        "id": "zero-lr-control",
+        "model": "densenet121",
+        "stage": "finetune",
+        "epoch": 6,
+        "learning_rate": 0.0,
+        "train_samples": 24,
+        "val_samples": 24,
+        "train_loss": 1.420616865158081,
+        "train_accuracy": 0.7916666666666666,
+        "val_accuracy": 0.375,
+        "val_loss": 1.5726356506347656,
+        "epoch_time": 3.331015200004913,
+        "handoff_epoch": 5,
+        "best_epoch": 5,
+        "best_val_accuracy": 0.375,
+        "checkpoint_saved": false,
+        "stale": 1
+      },
+      {
+        "id": "zero-lr-control",
+        "model": "densenet121",
+        "stage": "finetune",
+        "epoch": 7,
+        "learning_rate": 0.0,
+        "train_samples": 24,
+        "val_samples": 24,
+        "train_loss": 1.4202187458674114,
+        "train_accuracy": 0.625,
+        "val_accuracy": 0.375,
+        "val_loss": 1.5726356506347656,
+        "epoch_time": 0.8127436001086608,
+        "handoff_epoch": 5,
+        "best_epoch": 5,
+        "best_val_accuracy": 0.375,
+        "checkpoint_saved": false,
+        "stale": 2
+      },
+      {
+        "id": "zero-lr-control",
+        "model": "densenet121",
+        "stage": "finetune",
+        "epoch": 8,
+        "learning_rate": 0.0,
+        "train_samples": 24,
+        "val_samples": 24,
+        "train_loss": 1.4193607966105144,
+        "train_accuracy": 0.7083333333333334,
+        "val_accuracy": 0.375,
+        "val_loss": 1.5726356506347656,
+        "epoch_time": 0.8042922000167891,
+        "handoff_epoch": 5,
+        "best_epoch": 5,
+        "best_val_accuracy": 0.375,
+        "checkpoint_saved": false,
+        "stale": 3
+      }
+    ]
+  }
+}

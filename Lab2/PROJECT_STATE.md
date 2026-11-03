@@ -1,70 +1,60 @@
 # PROJECT_STATE — Lab 2
 
-- Cập nhật: 2026-10-30, Asia/Saigon. Workspace: D:\Lab2.
-- Rules đã đọc: C:\Users\toite\Downloads\Rules_29-10.md v1.0; tài liệu gốc giữ nguyên.
-- WF-001: COMPLETED / ACCEPTED theo xác nhận trước của người dùng. Môi trường local và benchmark có bằng chứng trong outputs/environment/ và LOG-008/009.
-- WF-002: IMPLEMENTATION COMPLETED / VERIFIED. Chỉ thị “Thực hiện đến khi xong đi” cho phép triển khai liên tục CHG-003..007; không dừng duyệt từng file. Chưa ghi nhận người dùng nghiệm thu kết quả cuối.
-- Workflow khóa: workflows/WF-002_v1.0_LOCKED_intel-experiments.md. Ngoại lệ có evidence: workflows/WF-002_AMENDMENT-01_label-conflicts.md. Không sửa bản khóa.
+Cập nhật: 2026-11-03, Asia/Saigon.
+Trạng thái: Generate đang thực hiện theo workflows/WF-LAB2-001.md đã khóa. CHG-DATA-001 đã triển khai và kiểm tra. CHG-DATA-002 là đề xuất riêng để tránh tái sử dụng manifest theo hash cũ. Chưa chạy huấn luyện. Xem history/2026-11-03_008_rgb-digest.md.
 
-## Kết quả
+Description đã bổ sung sáu câu hỏi 5W1H, bảng input/output toàn bài và bảng bàn giao giữa P01–P05.
 
-- Đủ 7 run, 33 epoch trên Intel Arc XPU. R01–R06: transfer 5 epoch/run; R07: fine-tune thêm 3 epoch từ checkpoint R02.
-- Model cuối R07 VGG11 fine-tune được chọn bằng validation **92,03%** trước test; test **92,80% (2.784/3.000)**, macro-F1 **0,9297**.
-- Best transfer VGG11 R02: validation91,53%, test91,70%, macro-F1 0,9186.
-- Best transfer DenseNet121 R06: validation91,21%, test91,53%, macro-F1 0,9168.
-- Test chỉ đánh giá R02/R06/R07 sau khóa lựa chọn. Notebook dùng lại kết quả test đã xác minh, không chạy lại để tuning.
-- Dataset Intel Image Classification v2: 14.034 train gốc; manifest sau audit gồm 11.208 train, 2.798 validation, 3.000 test; 7.301 ảnh chưa có nhãn không dùng tính điểm.
-- 13 nhóm ảnh giống byte nhưng khác nhãn (26 ảnh:23train/3test). Cách ly23train, tổng loại28train kể cả trùng/chồng lấn; giữ nguyên raw và test. Chi tiết outputs/data/audit.json, label_conflicts.json.
+P02 có bản mô tả kiến trúc và phương án freeze/fine-tune theo từng lớp tại docs/model.md. Chính sách mở khối cuối và chế độ Dropout/BatchNorm là đề xuất đang thảo luận.
 
-## Kiểm chứng
+P02 đã bổ sung sơ đồ từ ảnh RGB 224×224 đến sáu logits cho từng kiến trúc, kích thước sau mỗi khối và giai đoạn cập nhật trọng số.
 
-- 12 unit tests PASS: environment, leakage, conflict policy, corrupt images, ZIP traversal, weighted metrics, resume weights/epoch, stale config và confusion metrics.
-- Preflight 8 tổ hợp architecture/mode/batch trên XPU PASS; đầu ra [B,6], gradient hữu hạn, frozen parameters và buffers không đổi.
-- Kiểm tra artifact PASS: 7 run/33 epoch, checkpoint hashes, 6 scalar tags/run khớp history, 3 confusion matrix mỗi cái tổng3.000, metrics khớp prediction CSV, selection trước test.
-- Notebook thực thi 5 code cells, không error, có ảnh nhúng. Source notebook giao nộp khớp source notebook đã chạy.
-- Source/config/requirements huấn luyện khớp snapshot trước training. Không sửa source hoặc config giữa các run.
-- Visual QA: learning curves và confusion matrix R07 đọc được, không bị cắt nhãn. Các metrics từng lớp có trong CSV.
-- pip check PASS sau cài matplotlib; dependency versions/freeze được lưu. Không có thay đổi package trong quá trình huấn luyện.
+P03 có lịch đề xuất trong docs/training.md: mỗi model học classifier 5 epoch rồi fine-tune tối đa 15 epoch, với điều kiện dừng theo validation loss. Cấu hình đang ở bước Description.
 
-## Môi trường và cách mở
+## Lần dọn dự án ngày 2026-11-01
 
-- Intel Core Ultra5 125H / Intel Arc, RAM khoảng15,5GB; Windows11 25H2 64-bit; driver32.0.101.9150.
-- Python3.14.5 tại D:\Lab2\.venv\Scripts\python.exe.
-- torch2.14.1+xpu, torchvision0.29.1+xpu, tensorboard2.21.0, notebook7.6.3, ipykernel7.4.0, matplotlib3.11.2. Versions đầy đủ: outputs/dependencies.freeze.txt và identity từng run.
-- README.md có lệnh notebook, pipeline CLI, tests và TensorBoard. TensorBoard đã mở tại http://127.0.0.1:6006; nếu tiến trình dừng, chạy lại lệnh trong README.
 
-## Bàn giao
+Người dùng xác nhận: “xóa đi rồi thảo luận lại từ đầu để làm lại”.
+Đã xóa vĩnh viễn đúng năm thư mục trong D:/Lab2: docs, history, outputs, tests, workflows. Đã kiểm tra đường dẫn nằm trực tiếp trong workspace và xác nhận cả năm không còn tồn tại. Không tạo bản lưu trữ thay cho việc xóa.
 
-- Báo cáo: outputs/report/report.md; summary.json; bảng CSV; learning_curves.png và confusion matrices.
-- Notebook nguồn: notebooks/main.ipynb. Bản đã chạy: outputs/notebooks/main.executed.ipynb.
-- Phân tích đề: docs/phan_tich_de.md; nhận xét sâu từ kết quả: docs/nhan_xet_ket_qua.md.
-- Checkpoint cuối: outputs/experiments/R07/best.pt. Tất cả runs có identity/history/best/last và TensorBoard.
-- Bằng chứng kiểm chứng: outputs/unit_tests.json, outputs/verification.json, outputs/models/preflight.json.
-- Backup và hashes: history/checkpoints/CHG-003_007_before, CHG-003_007_after (trước training), CHG-003_007_final (bản giao).
-- Nhật ký triển khai: history/2026-10-30_009_trien-khai-wf002.md (LOG-010). Các LOG trước giữ nguyên. Không có Git repo, không tạo commit.
+Giữ nguyên data, src, configs, experiments, notebooks, .venv, requirements.txt, README.md và các file rules. Các file/thư mục khác ngoài năm mục trên không thuộc phạm vi xóa. Notebook có thể còn output nhúng và code cũ; các kết quả đó là lịch sử, không chứng minh cho phương án mới. Notebook/pipeline hiện có tham chiếu tới các artifact đã xóa nên chưa thể coi là chạy hoàn chỉnh.
 
-## Giới hạn / công việc còn lại
+Tiến trình tối ưu đã được dừng theo yêu cầu trước đó; không chủ động chạy lại. Không khôi phục history/workflows trong lượt dọn này; ghi nhận việc xóa tại đây theo phạm vi người dùng vừa xác nhận.
 
-Không còn hạng mục triển khai hoặc kiểm chứng trong phạm vi WF-002. Chỉ một seed, chưa có kiểm chứng đa seed hoặc ngoài dataset; SHA256 không phát hiện toàn bộ ảnh gần giống. R07 có ngân sách học thêm3epoch. Không tự tuyên bố người dùng đã nghiệm thu.
+## Nội dung cần thảo luận trước khi làm lại
 
-## WF-003 / CHG-008 — Notebook 16 bước (hoàn tất)
+1. Yêu cầu giáo viên và cấu trúc DOCX: mỗi phase có mục tiêu, input/output, code, thuật toán, lý do lựa chọn và kết quả.
+2. Thiết kế hai thí nghiệm chính cho VGG11 và DenseNet121: cấu hình, giai đoạn transfer/fine-tune, ngân sách epoch, seed và điều kiện so sánh công bằng.
+3. Metric chính, ý nghĩa best_val, quy tắc chọn best checkpoint, lưu last checkpoint và early stopping.
+4. Log console/file/TensorBoard có cấu hình, thời gian, chỉ số từng epoch và lý do dừng.
+5. Quy trình dữ liệu và đánh giá: test cũ đã từng được xem; việc xóa artifact không làm test trở thành holdout mới.
 
-Yêu cầu mới: một notebook theo đúng16bước. File giao: notebooks/intel_pipeline_16_steps.ipynb, có output thực,17codecells và16section, chạy thành công. Dùng dữ liệu/source/checkpoint trong D:/Lab2. Không sửa WF002/raw/models/config.
+## Bộ quy tắc hiện hành từ ngày 2026-11-02
 
-Bổ sung EDA,majoritybaseline,CV5fold linear-probe trên DenseNet121 ImageNet đóng băng (không phải CV R07),14.006 OOF; thống kê Wilson/pairedbootstrap/McNemar; lỗi thật và2GradCAM. Kiểm chứng tại outputs/pipeline_16_steps/delivery_verification.json; LOG011. Original delivery hashes không đổi.
+- `RULES.md` là bản v1.1 từ `PROJECT_RULES_FINAL_v1.1.zip`. Mục 19 quy định bảy tài liệu trong `docs/` và việc cập nhật chúng khi triển khai. `working_rule.md` tiếp tục bổ sung quy tắc cộng tác và ML/AI theo `AGENTS.md`.
+- Hai bản v1.0 đã khóa được lưu riêng vì khác nội dung. Bản từng dùng tại Lab2 ở `versions/RULES_v1.0_Lab2_2026-10-29.md`. Bản đi kèm ZIP ở `versions/RULES_v1.0_FINAL_2026-10-29.md`.
+- `workflows/WF-RULES-001.md` và bốn nhật ký nhập từ ZIP ghi lại việc ban hành quy tắc. Trạng thái hoàn tất của workflow này chỉ áp dụng cho bộ tài liệu quản trị.
+- Tại ngày 02/11, Lab2 đang thảo luận phương án kỹ thuật và chưa khởi tạo bộ `docs/`.
+- Nhật ký tích hợp tại Lab2 nằm ở `history/2026-11-02_002_tich-hop-rules-v1.1.md`.
 
-## CHG-009 — Biên tập nội dung phân tích
+EDA sau chia tập đã thực hiện theo yêu cầu. Bằng chứng ở outputs/eda-seed42/EDA.md. Trạng thái CHG-DATA-002 vẫn là đề xuất.
 
-Đã viết lại thuyết minh16bước trong notebooks/intel_pipeline_16_steps.ipynb theo yêu cầu người dùng: phân tích phương pháp/kết quả thay ghi chú quy trình. Giữ nguyên code,outputs,metadata và các chỉnh sửa bố cục hiện có của người dùng. Kiểm chứng tại outputs/pipeline_16_steps/editorial_verification.json; LOG012. Không cần thực thi lại vì chỉ sửaMarkdown.
-
-## CHG-010 — Nguồn và tổng quan dataset
-
-Notebook16bước hiện tại: notebooks/lab2.ipynb (tên mới phát hiện từ file thực tế). Đã thêm linkKaggle, overview/sáu lớp/số lượng/kích thước, cấu trúc thư mục và lệnh tải/chuẩn bị dữ liệu. Giữ toàn bộ cell cũ và output. LOG013; outputs/pipeline_16_steps/dataset_overview_verification.json PASS.
-
-## CHG-011 — Biểu đồ best runs
-
-Đã bổ sung4biểuđồ cóoutput vào cuối mục09 của notebooks/lab2.ipynb; R07 vàbesttransferR02/R06 được chọn bằngvalidationaccuracy. Giữcác cellcũ, khôngtrainlại. LOG014 và outputs/pipeline_16_steps/best_curves/verification.json PASS.
-
-## WF-004 / CHG-012 — R07 mở rộng đủ5epoch (COMPLETED / VERIFIED)
-
-R07_5epochs tiếp tục từepoch3, đãchạy4–5. Bestvalidationaccuracy epoch5=92,0658% (2576/2798), hơn R07gốc1ảnh; valloss0,26783, minvalloss epoch1=0,23784. Giữbestcheckpointmới riêng, chưa đánhgiátest. OriginalR07epoch3 vàtest92,80% giữnguyên. Notebooklab2.ipynb đã cập nhậtđồ thị5epoch vàgiảithíchlựa chọn/overfitting. LOG015; outputs/pipeline_16_steps/r07_5epochs/verification.json PASS.
+EDA đã bổ sung biểu đồ và CSV theo chiều lớp trong outputs/eda-seed42/.
+EDA tám mục hoàn tất trên bản chia hiện tại. Phát hiện 48 cặp dHash ứng viên train/validation. Sáu cặp xem trực tiếp có cảnh gần như trùng nhau. Chưa xử lý split theo nhóm hoặc chạy normal.
+Đã hoàn tất rà 356 cặp và xuất outputs/data/manifest.csv theo nhóm cảnh. DataLoader đọc đúng 11.173 train, 2.793 validation, 3.000 test. Baseline mới 17,90%. Xem outputs/scene-review/report.md. Bước tiếp theo P02 kiểm tra model/freeze rồi mới smoke training.
+P02 TESTED: cả 2 model × 2 stage × B8/B16 đạt trên XPU. Báo cáo ở outputs/models/preflight.json và stage-checks.json. Tiếp theo P03 smoke chuyển stage, ghi log và lưu/nạp checkpoint.
+P03 smoke riêng chạy thành công trên XPU: outputs/smoke-p03/20261103-133427/report.json. Normal entry point phase_04_train vẫn dùng lịch cũ và kiểm hash file, cần cập nhật trước normal.
+P03 · Đã thay lịch cũ bằng entry point smoke/normal cho WF-LAB2-001. Smoke XPU và kiểm chứng dừng sớm đạt. Outputs: outputs/smoke-entry-p03. Normal chưa chạy, P04 đánh giá cũ cần thích nghi sau khi khóa model.
+P03 normal đã được yêu cầu và khởi chạy; thư mục outputs/training-scene-v1. Xem console.log và report.json để phân biệt đang chạy và hoàn tất.
+P03 normal PASSED. Đã khóa DenseNet121 epoch 9 bằng validation. Bằng chứng outputs/training-scene-v1/TRAINING.md. Chưa đánh giá test của thiết kế mới.
+P04 hoàn tất: DenseNet121 epoch 9 test accuracy 93,10%, macro-F1 93,26%. Báo cáo outputs/evaluation-scene-v1/report.md. Main notebook đã chạy lại từ kết quả lưu. P05 demo là bước kế tiếp.
+P05 hoàn tất theo WF-LAB2-001. Demo khớp P04 trên ảnh kiểm tra (chênh softmax bằng 0); ảnh 10004.jpg trong seg_pred cho street, 0,8663. Năm phase đã đối chiếu trong docs/plan-progress.md. Checkpoint dùng cho test và demo: DenseNet121 epoch 9, không thay đổi sau test. Xem history/2026-11-03_018_p05-close.md.
+notebooks/lab2.ipynb đã cập nhật thành báo cáo P01–P05 và chạy đủ các ô với kết quả hiện hành; main.ipynb là notebook điều phối. Xem history/2026-11-03_019_lab2-report.md.
+Đã bổ sung notebooks/lab2_pipeline.ipynb trình bày cùng thực nghiệm theo 16 bước. Xem history/2026-11-03_020_pipeline-notebook.md.
+Notebook 16 bước hiện kiểm tra split ở mục 02 trước khi phân tích phân bố lớp ở mục 03. Xem history/2026-11-03_021_split-before-eda.md.
+Mục 03 của notebook 16 bước đã nhúng đầy đủ chín hình EDA ban đầu. Xem history/2026-11-03_022_eda-figures.md.
+Mục 05 của notebook pipeline đã có ba hình tiền xử lý và trích đặc trưng. Xem history/2026-11-03_023_feature-figures.md.
+Mục 06 đã giải thích cách dự đoán của majority baseline và cách huấn luyện, chọn checkpoint, so sánh hai baseline classifier-only. Xem history/2026-11-03_024_baseline-detail.md.
+Mục 07–09 đã bổ sung so sánh kiến trúc, khảo sát LR bằng biểu đồ và diễn giải checkpoint từ log thật. Xem history/2026-11-03_025_sections-07-09.md.
+Notebook 16 bước có biểu đồ và nhận xét từ mục 10 đến 16. Xem history/2026-11-03_026_lower-review.md.
+Phiên xuất bản bản sửa sang nhánh lab2.1, gốc Lab2 tại 08da565. Phạm vi và cách kiểm chứng: history/2026-11-03_027_publish-lab2-1.md.

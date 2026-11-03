@@ -67,6 +67,13 @@ def locate(name):
     return candidates[0]
 
 
+def rgb_digest(image):
+    from hashlib import sha256 as digest
+    rgb = image.convert('RGB')
+    width, height = rgb.size
+    return digest(f'{width}x{height}:'.encode() + rgb.tobytes()).hexdigest()
+
+
 def inspect_images(folder, split):
     rows = []
     for label, name in enumerate(CLASSES):
@@ -79,7 +86,7 @@ def inspect_images(folder, split):
                 if width < 1 or height < 1:
                     raise ValueError(f'Invalid image size: {path}')
                 rows.append(dict(relative_path=path.relative_to(RAW).as_posix(), split=split,
-                                 class_name=name, label=label, sha256=sha256(path),
+                                 class_name=name, label=label, sha256=rgb_digest(image),
                                  width=width, height=height, original_mode=image.mode))
     return rows
 
