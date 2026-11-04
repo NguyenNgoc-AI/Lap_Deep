@@ -27,6 +27,27 @@ Model đúng với câu có cảm xúc rõ và câu phủ định, nhưng sai v�
 
 ## 3. Exercise 2 — kết quả fine-tune
 
+### Kết quả cuối — lần 3 (04/11, GPU RTX 3050, 3 epoch, bản tách validation/test)
+
+Theo dõi trên **validation** sau mỗi epoch; **test** chỉ đánh giá một lần, bằng model ở cuối epoch 3. Huấn luyện 1.602 bước trong 121,8 giây.
+
+| Tập | Thời điểm | Training loss | Loss | Accuracy | F1 |
+|---|---|---|---|---|---|
+| Validation | Trước fine-tune | – | 0.6968 | 45.22% | 17.75% |
+| Validation | Sau epoch 1 | 0.4002 | **0.3450** | 83.58% | 83.12% |
+| Validation | Sau epoch 2 | 0.2297 | 0.4067 | **84.62%** | 84.32% |
+| Validation | Sau epoch 3 | 0.1447 | 0.4874 | 84.52% | 84.59% |
+| **Test** | Cuối epoch 3 | – | 0.5470 | **84.62%** | **84.67%** |
+
+Kết quả này trùng từng chữ số với test của lần 1 (cùng seed 42, cùng GPU): training loss từng epoch giống hệt, nên huấn luyện **tái lập được**; việc tách validation/test chỉ đổi tập dùng để theo dõi, không đổi model.
+
+| Nguồn | Validation trước | Validation sau | Test accuracy | Test F1 |
+|---|---|---|---|---|
+| Notebook, cuối epoch 3 (lần 3) | 45.22% | 84.52% | **84.62%** | **84.67%** |
+| `src.train` + `src.evaluation`, epoch tốt nhất | `TODO` | `TODO` | `TODO` | `TODO` |
+
+`TODO`: chạy `src.train`, `src.evaluation` để có dòng thứ hai. Với các số trên, script sẽ chọn **epoch 2** (validation accuracy cao nhất 84.62%).
+
 ### Lần 1 — bản đầu, 3 epoch, GPU (đánh giá trên tập test sau mỗi epoch)
 
 | Thời điểm | Loss | Accuracy | F1 |
@@ -46,24 +67,19 @@ Model đúng với câu có cảm xúc rõ và câu phủ định, nhưng sai v�
 
 ### Câu tự viết
 
-| Câu | Lần 1 (3 epoch) | Lần 2 (1 epoch) |
-|---|---|---|
-| An absolute masterpiece with brilliant acting. | POSITIVE 99.67% | POSITIVE 97.78% |
-| Boring plot and terrible dialogue. | NEGATIVE 99.46% | NEGATIVE 96.69% |
-| Not bad at all! | POSITIVE 95.90% | NEGATIVE 66.07% (sai) |
-
-### Kết quả cuối — `PENDING_UPDATE` (chờ chạy lại)
-
-| Nguồn | Validation trước | Validation sau | Test accuracy | Test F1 |
-|---|---|---|---|---|
-| Notebook, cuối epoch 3 | Chờ chạy lại | Chờ chạy lại | Chờ chạy lại | Chờ chạy lại |
-| `src.train` + `src.evaluation`, epoch tốt nhất | Chờ chạy | Chờ chạy | Chờ chạy | Chờ chạy |
+| Câu | Lần 3 — cuối (3 epoch) | Lần 1 (3 epoch) | Lần 2 (1 epoch) |
+|---|---|---|---|
+| An absolute masterpiece with brilliant acting. | POSITIVE 99.67% | POSITIVE 99.67% | POSITIVE 97.78% |
+| Boring plot and terrible dialogue. | NEGATIVE 99.46% | NEGATIVE 99.46% | NEGATIVE 96.69% |
+| Not bad at all! | POSITIVE 95.90% | POSITIVE 95.90% | NEGATIVE 66.07% (sai) |
 
 Sau khi chạy `src.evaluation`, các file trong `results/` bổ sung: `test_metrics.json` (chỉ số trước/sau, theo lớp, confusion matrix), `confusion_matrix.png`, `misclassified.csv` (các câu đoán sai kèm độ tin cậy).
 
 ## 4. Nhận xét
 
-- **Tác dụng của fine-tune:** trước fine-tune lớp phân loại là trọng số ngẫu nhiên, model gần như chỉ đoán một nhãn (accuracy 42–45%, F1 14–17%). Chỉ 1 epoch đã lên khoảng 84%, nhờ tri thức ngôn ngữ DistilBERT học sẵn.
-- **Overfitting:** ở lần 1, loss đánh giá tăng từ 0.3625 lên 0.5470 trong khi accuracy chỉ tăng từ 84.43% lên 84.62%. Accuracy gần như không đổi nhưng loss tăng nghĩa là model đoán sai với độ tự tin cao hơn. Với bộ dữ liệu này 1–2 epoch là đủ.
+- **Kết quả cuối:** test accuracy **84.62%**, F1 **84.67%** (1.066 câu), từ 45.22% validation trước fine-tune.
+- **Tác dụng của fine-tune:** trước fine-tune lớp phân loại là trọng số ngẫu nhiên, model gần như chỉ đoán một nhãn (accuracy 42–45%, F1 14–18%). Chỉ 1 epoch đã lên khoảng 84%, nhờ tri thức ngôn ngữ DistilBERT học sẵn.
+- **Overfitting (xác nhận trên validation):** validation loss thấp nhất ở epoch 1 (0.3450) rồi tăng lên 0.4067 và 0.4874, trong khi training loss vẫn giảm (0.4002 → 0.1447); validation accuracy đạt cao nhất ở epoch 2 (84.62%) rồi giảm nhẹ ở epoch 3 (84.52%). Loss tăng mà accuracy gần như đứng yên nghĩa là model đoán sai với độ tự tin cao hơn. Với bộ dữ liệu này 1–2 epoch là đủ.
+- **Tái lập:** lần 3 cho cùng training loss và cùng kết quả test với lần 1. Lần 2 (CPU, không fp16) lệch nhẹ (ví dụ validation trước fine-tune 45.12% so với 45.22%) do khác phần cứng và độ chính xác số.
 - **Câu phủ định:** sau 1 epoch model còn đoán sai "Not bad at all!"; sau 3 epoch đã đúng. Câu phủ định cần model hiểu ngữ cảnh hơn là từ khóa đơn lẻ.
-- **Quy trình:** bản đầu theo dõi bằng tập test nên con số test không còn khách quan; bản sửa dùng validation để theo dõi và test chỉ một lần, đúng quy trình hơn. Hai lần chạy khác tập đánh giá và khác số epoch nên không so sánh trực tiếp từng con số.
+- **Quy trình:** bản đầu theo dõi bằng tập test nên con số test không còn khách quan; bản sửa dùng validation để theo dõi và test chỉ một lần, đúng quy trình hơn. Lần 1 và lần 3 khác tập dùng để theo dõi nhưng cùng model, nên con số test giống nhau; lần 3 là kết quả chính thức.

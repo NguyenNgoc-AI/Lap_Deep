@@ -5,7 +5,7 @@ Dùng thư viện Hugging Face (`transformers`, `datasets`, `evaluate`) để:
 - **Exercise 1:** phân tích cảm xúc một câu bằng model có sẵn `distilbert-base-uncased-finetuned-sst-2-english`.
 - **Exercise 2:** fine-tune `distilbert/distilbert-base-uncased` cho phân loại cảm xúc 2 lớp trên bộ review phim `rotten_tomatoes`.
 
-Kết quả đã có: Exercise 1 đúng với câu có cảm xúc rõ và câu phủ định, sai với câu mỉa mai. Exercise 2 đạt khoảng **84% accuracy** (từ 42–45% trước fine-tune). Kết quả cuối của bản Exercise 2 hiện tại (3 epoch, tách validation/test) **còn chờ chạy lại** — xem [docs/plan-progress.md](docs/plan-progress.md).
+Kết quả đã có: Exercise 1 đúng với câu có cảm xúc rõ và câu phủ định, sai với câu mỉa mai. Exercise 2 (3 epoch trên GPU RTX 3050, 2 phút) đạt **test accuracy 84.62%, F1 84.67%**, từ 45.22% trước fine-tune; validation loss tăng từ epoch 2 cho thấy overfitting. Chi tiết: [docs/evaluation.md](docs/evaluation.md). Còn lại: chạy các script `src/` với dữ liệu thật — xem [docs/plan-progress.md](docs/plan-progress.md).
 
 ## Tài liệu
 

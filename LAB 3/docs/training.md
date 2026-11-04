@@ -29,7 +29,7 @@ Transformers 5 dùng tên `eval_strategy` (không còn `evaluation_strategy`) v�
 | Lưu model ra đĩa | Không | `models/distilbert-rotten-tomatoes/` |
 | Kết quả ghi ra | Output trong notebook | `results/train_log.json`, `train_history.csv`, `loss_curve.png` |
 
-Script giữ epoch tốt nhất vì các lần chạy trước cho thấy validation loss tăng sau epoch 1 (mục 4).
+Script giữ epoch tốt nhất vì validation loss tăng sau epoch 1 và validation accuracy cao nhất ở epoch 2 (mục 4); với số liệu lần 3, script sẽ chọn epoch 2.
 
 ## 3. Cách chạy
 
@@ -49,17 +49,17 @@ Máy chỉ có CPU: đặt `$env:LAB3_TRAIN_LIMIT = "2000"` trước khi chạy 
 |---|---|---|---|---|---|---|
 | 1 | 28/10 | Bản đầu (đánh giá trên test) | GPU RTX 3050 6GB | 3 | 1.602 | 118,6 giây |
 | 2 | 30/10 | Bản tách validation/test | CPU | 1 (chưa chạy hết) | 534 | 1.177,7 giây (~19,6 phút) |
-| 3 | — | Bản hiện tại, chạy lại đủ 3 epoch | GPU | — | — | **`PENDING_UPDATE`** |
+| **3** | **04/11** | **Bản hiện tại (tách validation/test) — kết quả chính thức** | GPU RTX 3050 6GB | 3 | 1.602 | 121,8 giây |
 
-**Quá trình học ở lần 1** (loss đánh giá trên test):
+**Quá trình học ở lần 3** (kết quả chính thức):
 
-| Epoch | Training loss | Loss đánh giá |
-|---|---|---|
-| 1 | 0.4002 | **0.3625** |
-| 2 | 0.2297 | 0.4408 |
-| 3 | 0.1447 | 0.5470 |
+| Epoch | Training loss | Validation loss | Validation accuracy |
+|---|---|---|---|
+| 1 | 0.4002 | **0.3450** | 83.58% |
+| 2 | 0.2297 | 0.4067 | **84.62%** |
+| 3 | 0.1447 | 0.4874 | 84.52% |
 
-Training loss giảm đều qua 3 epoch, nhưng loss đánh giá thấp nhất ở epoch 1 rồi tăng → model bắt đầu **overfitting** từ epoch 2. Trên biểu đồ training loss có hai lần giảm mạnh quanh bước 534 và 1.068, đúng lúc bắt đầu epoch 2 và 3 (model gặp lại dữ liệu đã học).
+Training loss giảm đều qua 3 epoch, nhưng validation loss thấp nhất ở epoch 1 rồi tăng → model bắt đầu **overfitting** từ epoch 2. Lần 1 (theo dõi trên test) cho cùng hình dạng: loss đánh giá 0.3625 → 0.4408 → 0.5470; training loss của lần 1 và lần 3 giống hệt nhau (cùng seed). Trên biểu đồ training loss có hai lần giảm mạnh quanh bước 534 và 1.068, đúng lúc bắt đầu epoch 2 và 3 (model gặp lại dữ liệu đã học).
 
 **Lần 2** (bản tách validation/test, 1 epoch): training loss 0.3958, validation loss 0.3569.
 

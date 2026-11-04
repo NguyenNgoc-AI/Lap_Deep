@@ -16,8 +16,8 @@ Cập nhật: 2026-11-04, Asia/Ho_Chi_Minh.
 | P02 · Exercise 1 | `notebooks/ex1_sentiment_analysis.ipynb` | TESTED | Chạy trên GPU 28/10, output lưu trong notebook |
 | P03 · Data | `src/data.py`, notebook ex2 bước 2–4 | IMPLEMENTED | Notebook đã tải và tokenize dữ liệu thật; script mới chạy với dữ liệu giả lập |
 | P04 · Model | `src/model.py`, notebook ex2 bước 3 | IMPLEMENTED | Như trên |
-| P05 · Training | `notebooks/ex2_finetuning.ipynb`, `src/train.py` | **BLOCKED (chờ chạy lại)** | Bản sửa 30/10 chỉ có output 1 epoch trên CPU, không khớp `num_train_epochs=3`; bản đầu 28/10 đã chạy đủ 3 epoch |
-| P06 · Evaluation | `src/evaluation.py`, notebook ex2 bước 7 | IMPLEMENTED | Kết quả cuối `PENDING_UPDATE` |
+| P05 · Training | `notebooks/ex2_finetuning.ipynb`, `src/train.py` | TESTED (notebook) / IMPLEMENTED (script) | Notebook chạy lại 04/11: 3 epoch, GPU, 121,8 giây, khớp code; script chưa chạy với dữ liệu thật |
+| P06 · Evaluation | `src/evaluation.py`, notebook ex2 bước 7 | TESTED (notebook) / IMPLEMENTED (script) | Test 84.62%, F1 84.67%; dòng kết quả script `TODO` |
 | P07 · Demo | `src/demo.py` | IMPLEMENTED | 4 chế độ chạy được với model giả lập; chưa chạy với model thật |
 | P08 · Bàn giao | README, `AI_USAGE.md`, báo cáo, upload | IN PROGRESS | Chưa upload lên nhánh `Lab3` |
 
@@ -32,22 +32,22 @@ Chưa có phase nào ở trạng thái ACCEPTED: chưa ghi nhận nhóm/giảng 
 | 01/11 | Xóa `LAB 3` khỏi `main` | Commit `4f1f92f`, nhánh `main` |
 | 01/11 | Thêm `src/`, `docs/`, `AI_USAGE.md`, chuyển notebook vào `notebooks/` | Chưa commit (bản local) |
 | 04/11 | Đổi tên `docs/lab3_description.md` → `labs3-description.md`, `plan_progress_status.md` → `plan-progress.md`; bổ sung nội dung theo Rules §19; thêm file này và `history/` | Chưa commit (bản local) |
+| 04/11 | Chạy lại `notebooks/ex2_finetuning.ipynb` đủ 3 epoch trên GPU; điền kết quả chính thức vào `docs/`, README | Notebook lưu ở `D:\Code\Lap_Deep` (nhánh `Lab3`), chưa commit |
 
 ## Kiểm chứng
 
-- Notebook Ex1 và Ex2 (bản đầu): output thật, đã đối chiếu với tài liệu.
+- Notebook Ex1, Ex2 bản đầu (28/10) và Ex2 bản hiện tại chạy lại 04/11: output thật, đã đối chiếu với tài liệu. Lần 04/11 trùng kết quả test và training loss với lần 28/10 (seed 42) → tái lập được.
 - `src/`: `py_compile` PASS; chuỗi `data → model → train → evaluation → demo` exit 0 với model DistilBERT tí hon và dữ liệu giả lập offline. **Chưa chạy với model và dữ liệu thật.**
 - Tài liệu: mọi con số trong `docs/`, README, `AI_USAGE.md` khớp output notebook (kiểm tra tự động); mọi link giữa các file `.md` mở được.
 
 ## Blocker và quyết định
 
-- **Blocker:** kết quả cuối của Ex2 bản hiện tại chưa có — cần chạy lại trên máy GPU.
+- **Blocker:** không còn. Ex2 đã có kết quả chính thức (test 84.62%, F1 84.67%).
 - **Đã chốt:** bài nộp ở nhánh `Lab3`; theo dõi bằng validation, test chỉ một lần; không đưa model fine-tune (~255 MB) lên GitHub.
-- **Chưa chốt:** đánh giá bằng model cuối epoch 3 (notebook) hay epoch tốt nhất (script) cho số liệu chính trong báo cáo.
+- **Đề xuất, chờ nhóm xác nhận:** số liệu chính trong báo cáo lấy từ notebook (model cuối epoch 3); kết quả script (epoch tốt nhất, dự kiến epoch 2) là bổ sung khi chạy.
 
 ## Việc tiếp theo được đề xuất (chưa thực hiện)
 
-1. Chạy lại `notebooks/ex2_finetuning.ipynb` và các script `src` trên GPU.
-2. Điền kết quả cuối vào `docs/`, README, báo cáo; ghi log phiên chạy vào `history/`; cập nhật file này và `docs/plan-progress.md`.
+1. Chạy các script `src` trên GPU; điền dòng kết quả script trong `docs/evaluation.md` và `docs/demo.md`.
+2. Commit và push lên nhánh `Lab3`.
 3. Thành viên khác bổ sung `AI_USAGE.md`.
-4. Upload `LAB 3/` lên nhánh `Lab3`.
