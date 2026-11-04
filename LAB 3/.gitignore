@@ -1,0 +1,11 @@
+# Model sau fine-tune và checkpoint (~255 MB/file, vượt giới hạn GitHub)
+models/*
+!models/.gitkeep
+
+# Thư mục tạm của notebook Exercise 2
+**/results_ex2/
+
+# Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+.venv/
