@@ -1,6 +1,6 @@
 # PROJECT_STATE — Lab 3
 
-Cập nhật: 2026-11-04, Asia/Ho_Chi_Minh.
+Cập nhật: 2026-11-07, Asia/Ho_Chi_Minh.
 
 ## Rules và workflow
 
@@ -14,12 +14,12 @@ Cập nhật: 2026-11-04, Asia/Ho_Chi_Minh.
 |---|---|---|---|
 | P01 · Description | `docs/labs3-description.md` | IMPLEMENTED | 5W1H, input/output, luồng xử lý, đối chiếu 11 yêu cầu |
 | P02 · Exercise 1 | `notebooks/ex1_sentiment_analysis.ipynb` | TESTED | Chạy trên GPU 28/10, output lưu trong notebook |
-| P03 · Data | `src/data.py`, notebook ex2 bước 2–4 | IMPLEMENTED | Notebook đã tải và tokenize dữ liệu thật; script mới chạy với dữ liệu giả lập |
-| P04 · Model | `src/model.py`, notebook ex2 bước 3 | IMPLEMENTED | Như trên |
-| P05 · Training | `notebooks/ex2_finetuning.ipynb`, `src/train.py` | TESTED (notebook) / IMPLEMENTED (script) | Notebook chạy lại 04/11: 3 epoch, GPU, 121,8 giây, khớp code; script chưa chạy với dữ liệu thật |
-| P06 · Evaluation | `src/evaluation.py`, notebook ex2 bước 7 | TESTED (notebook) / IMPLEMENTED (script) | Test 84.62%, F1 84.67%; dòng kết quả script `TODO` |
-| P07 · Demo | `src/demo.py` | IMPLEMENTED | 4 chế độ chạy được với model giả lập; chưa chạy với model thật |
-| P08 · Bàn giao | README, `AI_USAGE.md`, báo cáo, upload | IN PROGRESS | Chưa upload lên nhánh `Lab3` |
+| P03 · Data | `src/data.py`, notebook ex2 bước 2–4 | TESTED | 07/11: xuất `data/rotten_tomatoes/*.csv` (8.530/1.066/1.066), `results/dataset_stats.json` |
+| P04 · Model | `src/model.py`, notebook ex2 bước 3 | TESTED | 07/11: `results/model_summary.txt`, 66.955.010 tham số; sửa dòng in tên kiến trúc |
+| P05 · Training | `notebooks/ex2_finetuning.ipynb`, `src/train.py` | TESTED | Notebook 04/11 (121,8 giây); script 07/11 (131,5 giây, chọn epoch 2), validation giống hệt notebook |
+| P06 · Evaluation | `src/evaluation.py`, notebook ex2 bước 7 | TESTED | Notebook: test 84.62%, F1 84.67%. Script (epoch 2): 84.62%, F1 84.38%, confusion matrix, 164 câu sai. Sửa 07/11: nạp `evaluate` một lần, offline |
+| P07 · Demo | `src/demo.py` | TESTED | 07/11: `--compare` 5 câu, model Ex1 và Ex2 |
+| P08 · Bàn giao | README, `AI_USAGE.md`, báo cáo, upload | IN PROGRESS | Đã push 04/11 (`fa60ff9`); cần push bản 07/11; `AI_USAGE` thành viên khác và họ tên, MSSV trong báo cáo còn trống |
 
 Chưa có phase nào ở trạng thái ACCEPTED: chưa ghi nhận nhóm/giảng viên nghiệm thu.
 
@@ -32,12 +32,14 @@ Chưa có phase nào ở trạng thái ACCEPTED: chưa ghi nhận nhóm/giảng 
 | 01/11 | Xóa `LAB 3` khỏi `main` | Commit `4f1f92f`, nhánh `main` |
 | 01/11 | Thêm `src/`, `docs/`, `AI_USAGE.md`, chuyển notebook vào `notebooks/` | Chưa commit (bản local) |
 | 04/11 | Đổi tên `docs/lab3_description.md` → `labs3-description.md`, `plan_progress_status.md` → `plan-progress.md`; bổ sung nội dung theo Rules §19; thêm file này và `history/` | Chưa commit (bản local) |
-| 04/11 | Chạy lại `notebooks/ex2_finetuning.ipynb` đủ 3 epoch trên GPU; điền kết quả chính thức vào `docs/`, README | Notebook lưu ở `D:\Code\Lap_Deep` (nhánh `Lab3`), chưa commit |
+| 04/11 | Chạy lại `notebooks/ex2_finetuning.ipynb` đủ 3 epoch trên GPU; điền kết quả chính thức vào `docs/`, README | Đã push trong `fa60ff9` |
+| 04/11 | Push bản tổ chức lại + kết quả notebook | Commit `fa60ff9` "update lai lab3", nhánh `Lab3` |
+| 07/11 | Chạy các script `src`; sửa `src/model.py` (dòng in kiến trúc), `src/evaluation.py` (nạp `evaluate` một lần, offline); điền kết quả script vào `docs/`, README | Chưa commit |
 
 ## Kiểm chứng
 
 - Notebook Ex1, Ex2 bản đầu (28/10) và Ex2 bản hiện tại chạy lại 04/11: output thật, đã đối chiếu với tài liệu. Lần 04/11 trùng kết quả test và training loss với lần 28/10 (seed 42) → tái lập được.
-- `src/`: `py_compile` PASS; chuỗi `data → model → train → evaluation → demo` exit 0 với model DistilBERT tí hon và dữ liệu giả lập offline. **Chưa chạy với model và dữ liệu thật.**
+- `src/`: chạy đủ chuỗi `data → model → train → evaluation → demo` với model và dữ liệu thật trên GPU (07/11); validation của script trùng notebook ở cả 3 epoch.
 - Tài liệu: mọi con số trong `docs/`, README, `AI_USAGE.md` khớp output notebook (kiểm tra tự động); mọi link giữa các file `.md` mở được.
 
 ## Blocker và quyết định
@@ -48,6 +50,5 @@ Chưa có phase nào ở trạng thái ACCEPTED: chưa ghi nhận nhóm/giảng 
 
 ## Việc tiếp theo được đề xuất (chưa thực hiện)
 
-1. Chạy các script `src` trên GPU; điền dòng kết quả script trong `docs/evaluation.md` và `docs/demo.md`.
-2. Commit và push lên nhánh `Lab3`.
+1. Commit và push bản 07/11 lên nhánh `Lab3` (gồm `data/rotten_tomatoes/`, `results/`, tài liệu; không gồm `models/`).
 3. Thành viên khác bổ sung `AI_USAGE.md`.

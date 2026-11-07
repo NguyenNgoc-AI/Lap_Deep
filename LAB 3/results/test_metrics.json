@@ -1,0 +1,41 @@
+{
+  "model": "models\\distilbert-rotten-tomatoes",
+  "test_size": 1066,
+  "baseline_not_finetuned": {
+    "precision": 0.2840909090909091,
+    "recall": 0.09380863039399624,
+    "accuracy": 0.42870544090056284,
+    "f1": 0.14104372355430184
+  },
+  "finetuned": {
+    "precision": 0.8568665377176016,
+    "recall": 0.8311444652908068,
+    "accuracy": 0.8461538461538461,
+    "f1": 0.8438095238095238
+  },
+  "per_class": {
+    "NEGATIVE": {
+      "precision": 0.8360655737704918,
+      "recall": 0.8611632270168855,
+      "f1-score": 0.8484288354898336,
+      "support": 533.0
+    },
+    "POSITIVE": {
+      "precision": 0.8568665377176016,
+      "recall": 0.8311444652908068,
+      "f1-score": 0.8438095238095238,
+      "support": 533.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      459,
+      74
+    ],
+    [
+      90,
+      443
+    ]
+  ],
+  "num_misclassified": 164
+}

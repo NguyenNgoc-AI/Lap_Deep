@@ -47,7 +47,7 @@ def summarize(name, model):
     head = getattr(model, "classifier", None)
     return "\n".join([
         f"=== {name}",
-        f"Kiến trúc: {model.config.architectures or type(model).__name__}",
+        f"Kiến trúc: {type(model).__name__}",
         f"Số lớp Transformer: {getattr(model.config, 'n_layers', getattr(model.config, 'num_hidden_layers', '?'))}",
         f"Kích thước ẩn: {getattr(model.config, 'dim', getattr(model.config, 'hidden_size', '?'))}",
         f"Nhãn: {model.config.id2label}",

@@ -18,7 +18,7 @@
 
 ## 3. Kiến trúc DistilBERT
 
-DistilBERT là bản rút gọn của BERT (khoảng 66 triệu tham số), giữ phần lớn khả năng hiểu ngôn ngữ nhưng nhỏ và nhanh hơn, phù hợp GPU laptop 6 GB.
+DistilBERT là bản rút gọn của BERT (66.955.010 tham số khi gắn lớp phân loại 2 nhãn, theo `results/model_summary.txt`), giữ phần lớn khả năng hiểu ngôn ngữ nhưng nhỏ và nhanh hơn, phù hợp GPU laptop 6 GB.
 
 ```
 Câu → Tokenizer (WordPiece, uncased) → input_ids

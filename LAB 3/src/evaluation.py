@@ -8,6 +8,7 @@ Chạy:  python -m src.evaluation
 """
 import csv
 import json
+import os
 
 import numpy as np
 import torch
@@ -30,19 +31,44 @@ def predict(model, tokenizer, ds):
     return out.predictions, out.label_ids
 
 
+_EVALUATE_METRICS = None  # nạp một lần, dùng lại cho mọi lần tính
+
+
+def _load_evaluate_metrics():
+    """Nạp accuracy và F1 từ thư viện `evaluate` (đề yêu cầu) đúng một lần.
+
+    Chỉ dùng bản đã lưu trên máy (HF_EVALUATE_OFFLINE=1), không hỏi Hugging Face Hub,
+    để không bị treo chờ mạng. Bản lưu có sẵn sau khi chạy notebook ex2.
+    Không nạp được thì trả về {} và dùng sklearn.
+    """
+    global _EVALUATE_METRICS
+    if _EVALUATE_METRICS is None:
+        os.environ.setdefault("HF_EVALUATE_OFFLINE", "1")
+        try:
+            import evaluate
+            _EVALUATE_METRICS = {n: evaluate.load(n) for n in ("accuracy", "f1")}
+            print("Accuracy, F1: thư viện evaluate (bản lưu trên máy). Precision, recall: sklearn.")
+        except Exception as exc:
+            print(f"(Không nạp được thư viện evaluate: {str(exc)[:120]}... Dùng sklearn cho mọi chỉ số.)")
+            _EVALUATE_METRICS = {}
+    return _EVALUATE_METRICS
+
+
 def compute_metrics(preds, labels):
-    """Dùng thư viện `evaluate` như đề yêu cầu; nếu không tải được metric thì dùng sklearn."""
-    try:
-        import evaluate
-        scores = {}
-        for name in ("accuracy", "precision", "recall", "f1"):
-            scores.update(evaluate.load(name).compute(predictions=preds, references=labels))
-        return {k: float(v) for k, v in scores.items()}
-    except Exception as exc:  # không có mạng lần đầu, v.v.
-        from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
-        print(f"(Không dùng được thư viện evaluate: {exc}. Dùng sklearn thay thế.)")
-        return {"accuracy": accuracy_score(labels, preds), "precision": precision_score(labels, preds),
-                "recall": recall_score(labels, preds), "f1": f1_score(labels, preds)}
+    """Accuracy, F1 bằng `evaluate` nếu có; precision, recall bằng sklearn."""
+    from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+    metrics = _load_evaluate_metrics()
+    scores = {
+        "precision": float(precision_score(labels, preds, zero_division=0)),
+        "recall": float(recall_score(labels, preds, zero_division=0)),
+    }
+    if metrics:
+        scores["accuracy"] = float(metrics["accuracy"].compute(predictions=preds, references=labels)["accuracy"])
+        scores["f1"] = float(metrics["f1"].compute(predictions=preds, references=labels)["f1"])
+    else:
+        scores["accuracy"] = float(accuracy_score(labels, preds))
+        scores["f1"] = float(f1_score(labels, preds, zero_division=0))
+    return scores
 
 
 def plot_confusion(cm, path):

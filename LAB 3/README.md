@@ -5,7 +5,7 @@ Dùng thư viện Hugging Face (`transformers`, `datasets`, `evaluate`) để:
 - **Exercise 1:** phân tích cảm xúc một câu bằng model có sẵn `distilbert-base-uncased-finetuned-sst-2-english`.
 - **Exercise 2:** fine-tune `distilbert/distilbert-base-uncased` cho phân loại cảm xúc 2 lớp trên bộ review phim `rotten_tomatoes`.
 
-Kết quả đã có: Exercise 1 đúng với câu có cảm xúc rõ và câu phủ định, sai với câu mỉa mai. Exercise 2 (3 epoch trên GPU RTX 3050, 2 phút) đạt **test accuracy 84.62%, F1 84.67%**, từ 45.22% trước fine-tune; validation loss tăng từ epoch 2 cho thấy overfitting. Chi tiết: [docs/evaluation.md](docs/evaluation.md). Còn lại: chạy các script `src/` với dữ liệu thật — xem [docs/plan-progress.md](docs/plan-progress.md).
+Kết quả đã có: Exercise 1 đúng với câu có cảm xúc rõ và câu phủ định, sai với câu mỉa mai. Exercise 2 (3 epoch trên GPU RTX 3050, 2 phút) đạt **test accuracy 84.62%, F1 84.67%**, từ 45.22% trước fine-tune; validation loss tăng từ epoch 2 cho thấy overfitting. Chi tiết: [docs/evaluation.md](docs/evaluation.md). Script `src/` (chọn epoch tốt nhất là epoch 2) cho test 84.62%, precision 85.69%, recall 83.11%, F1 84.38%; confusion matrix và các câu đoán sai trong `results/`. Dữ liệu train/validation/test ở `data/rotten_tomatoes/`. Tiến độ: [docs/plan-progress.md](docs/plan-progress.md).
 
 ## Tài liệu
 
@@ -45,9 +45,9 @@ LAB 3/
 │   ├── train.py                   ← fine-tune bằng Trainer
 │   ├── evaluation.py              ← đánh giá trên tập test
 │   └── demo.py                    ← dự đoán câu bất kỳ
-├── data/                          ← CSV do src.data tạo
+├── data/rotten_tomatoes/          ← train.csv, validation.csv, test.csv (do src.data tạo)
 ├── models/                        ← model sau fine-tune (không đưa lên GitHub)
-└── results/                       ← số liệu và biểu đồ do các script tạo
+└── results/                       ← số liệu, biểu đồ loss, confusion matrix, câu đoán sai
 ```
 
 ## Cài đặt

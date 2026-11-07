@@ -33,6 +33,16 @@ Sau tokenize, mỗi mẫu có thêm `input_ids` (list số nguyên, ≤ 128 ph�
 
 Bộ dữ liệu đã chia sẵn 3 tập nên nhóm không tự tách. Không dùng tập test để chọn số epoch hay siêu tham số.
 
+Thống kê từ `results/dataset_stats.json` (do `src.data` tạo, 07/11):
+
+| Tập | neg | pos | Số từ trung bình | Câu dài nhất (từ) |
+|---|---|---|---|---|
+| train | 4.265 | 4.265 | 21.0 | 59 |
+| validation | 533 | 533 | 21.0 | 54 |
+| test | 533 | 533 | 21.2 | 52 |
+
+Hai lớp cân bằng tuyệt đối ở cả 3 tập, nên accuracy là chỉ số đủ tin cậy. Câu dài nhất 59 từ, ít hơn nhiều so với giới hạn 128 token, nên gần như không câu nào bị cắt.
+
 Ví dụ (train, nhãn `pos`):
 
 > the rock is destined to be the 21st century's new " conan " and that he's going to make a splash even greater than arnold schwarzenegger , jean-claud van damme or steven segal .
@@ -64,7 +74,7 @@ D:\Code\.venv\Scripts\python.exe -m src.data
 
 | Kết quả | Nội dung |
 |---|---|
-| `data/rotten_tomatoes/train.csv`, `validation.csv`, `test.csv` | Cột `text`, `label`; sau khi có các file này, các script đọc từ CSV, không cần mạng |
+| `data/rotten_tomatoes/train.csv`, `validation.csv`, `test.csv` | Cột `text`, `label` (khoảng 1,0 MB / 127 KB / 129 KB); đã có trong repo; các script đọc từ CSV, không cần mạng |
 | `results/dataset_stats.json` | Số câu, phân bố nhãn, số từ trung bình và dài nhất của từng tập |
 
 Lần chạy đầu cần mạng để tải dữ liệu từ Hugging Face Hub.

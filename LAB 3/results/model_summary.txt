@@ -1,0 +1,21 @@
+Thiết bị: cuda
+
+=== Exercise 1 — distilbert/distilbert-base-uncased-finetuned-sst-2-english
+Kiến trúc: DistilBertForSequenceClassification
+Số lớp Transformer: 6
+Kích thước ẩn: 768
+Nhãn: {0: 'NEGATIVE', 1: 'POSITIVE'}
+Tổng tham số: 66,955,010 | Tham số huấn luyện được: 66,955,010
+Lớp phân loại cuối: Linear(in_features=768, out_features=2, bias=True)
+
+=== Exercise 2 — distilbert/distilbert-base-uncased (+ lớp phân loại 2 nhãn, chưa fine-tune)
+Kiến trúc: DistilBertForSequenceClassification
+Số lớp Transformer: 6
+Kích thước ẩn: 768
+Nhãn: {0: 'NEGATIVE', 1: 'POSITIVE'}
+Tổng tham số: 66,955,010 | Tham số huấn luyện được: 66,955,010
+Lớp phân loại cuối: Linear(in_features=768, out_features=2, bias=True)
+
+Tokenizer ví dụ: I really love this movie, it was amazing!
+Tokens: ['i', 'really', 'love', 'this', 'movie', ',', 'it', 'was', 'amazing', '!']
+Input IDs: [101, 1045, 2428, 2293, 2023, 3185, 1010, 2009, 2001, 6429, 999, 102]

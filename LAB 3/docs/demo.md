@@ -32,7 +32,7 @@ Chạy trong thư mục `LAB 3`, đặt `$py = "D:\Code\.venv\Scripts\python.exe
 | `& $py -m src.demo --compare "Your sentence"` | Cả hai | So sánh trên câu tự nhập |
 | `& $py -m src.demo` | Đã fine-tune | Gõ câu liên tục, `q` để thoát |
 
-Chế độ dùng model đã fine-tune cần chạy `src.train` trước để có `models/distilbert-rotten-tomatoes/`. Chế độ `--model pretrained` dùng được ngay.
+Chế độ dùng model đã fine-tune cần chạy `src.train` trước để có `models/distilbert-rotten-tomatoes/` (model không có trên GitHub, mỗi máy tự tạo). Chế độ `--model pretrained` dùng được ngay.
 
 5 câu mẫu của `--compare`: "An absolute masterpiece with brilliant acting.", "Boring plot and terrible dialogue.", "Not bad at all!", "The food was okay, nothing special.", "Oh great, another Monday...". Bộ câu này gồm câu tích cực, tiêu cực, phủ định, trung tính và mỉa mai.
 
@@ -56,8 +56,20 @@ Từ output thật của notebook (chi tiết trong [evaluation.md](evaluation.m
 | An absolute masterpiece with brilliant acting. | — | POSITIVE 99.67% | POSITIVE 97.78% |
 | Boring plot and terrible dialogue. | — | NEGATIVE 99.46% | NEGATIVE 96.69% |
 
-`TODO`: thêm kết quả `src.demo --compare` với model fine-tune mới sau khi chạy `src.train`.
+Kết quả `src.demo --compare` (07/11, model Ex2 = epoch 2 do `src.train` lưu):
+
+| Câu | Model Ex1 (có sẵn, SST-2) | Model Ex2 (fine-tune rotten_tomatoes) |
+|---|---|---|
+| An absolute masterpiece with brilliant acting. | POSITIVE 99.99% | POSITIVE 99.40% |
+| Boring plot and terrible dialogue. | NEGATIVE 99.98% | NEGATIVE 99.18% |
+| Not bad at all! | POSITIVE 99.96% | POSITIVE 89.50% |
+| The food was okay, nothing special. | NEGATIVE 98.34% | NEGATIVE 90.04% |
+| Oh great, another Monday... | POSITIVE 99.70% (sai) | NEGATIVE 51.22% |
+
+- Hai model đồng ý ở 4/5 câu. Model Ex1 luôn tự tin trên 98%, kể cả câu trung tính và câu mỉa mai bị đoán sai.
+- Model Ex2 đoán câu mỉa mai là NEGATIVE nhưng chỉ 51.22%, gần như đoán may; với câu phủ định và câu trung tính, độ tin cậy cũng thấp hơn (89–90%). Model Ex2 "biết mình không chắc" hơn ở các câu khó, nhưng chưa đủ để nói nó hiểu mỉa mai.
 
 ## 4. Kiểm thử script
 
-Toàn bộ chuỗi `src.data → src.model → src.train → src.evaluation → src.demo` (cả 4 chế độ demo) đã chạy không lỗi với một model DistilBERT tí hon và dữ liệu giả lập offline, vì môi trường kiểm thử không truy cập được Hugging Face Hub. Chưa chạy với model và dữ liệu thật — xem [plan-progress.md](plan-progress.md).
+- Chạy với model và dữ liệu thật trên GPU (07/11): `src.data`, `src.model`, `src.train`, `src.evaluation`, `src.demo --compare` đều chạy xong, kết quả ở `results/` và bảng trên.
+- Trước đó (01/11), toàn bộ chuỗi đã được thử với model DistilBERT tí hon và dữ liệu giả lập offline.

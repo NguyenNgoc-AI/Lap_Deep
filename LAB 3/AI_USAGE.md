@@ -26,6 +26,7 @@ Không dùng công cụ AI nào khác cho phần việc khai báo ở đây.
 | 01/11 | Xem cấu trúc repo nhóm (Lab 1, Lab 2), tách Exercise 2 thành các file `src/`, viết README, `docs/`, `AI_USAGE.md` và báo cáo |
 | 04/11 | Rà soát Lab 3 theo `RULES.md` v1.1 (nhánh `lab2.1`): đổi tên file `docs/`, bổ sung nội dung còn thiếu, tạo `PROJECT_STATE.md` và `history/` |
 | 04/11 | Hướng dẫn push bằng Git/VS Code; xử lý lỗi môi trường sau khi cài lại Windows (thiếu Git, mất Python gốc của `.venv`, thiếu `ipykernel`); đọc kết quả chạy lại ex2 và điền vào tài liệu |
+| 07/11 | Hướng dẫn chạy các script `src`; sửa lỗi in sai tên kiến trúc (`src/model.py`) và lỗi treo khi tính chỉ số (`src/evaluation.py`); đọc kết quả và điền vào tài liệu |
 
 AI không được dùng làm nguồn xác nhận kết quả. Mọi con số trong tài liệu lấy từ output thật của notebook.
 
@@ -81,7 +82,7 @@ Ghi theo mục đích, không phải nguyên văn.
 | Kiểm tra huấn luyện | Có (lần 1) | Đủ 3 epoch, 1.602 bước, loss train giảm 0.4002 → 0.1447 |
 | Đối chiếu số liệu | Có | Mọi con số trong README, `docs/`, báo cáo đối chiếu với output notebook |
 | Đối chiếu notebook với đề | Có | Đủ 4 yêu cầu Ex1 và 7 yêu cầu Ex2 |
-| Chạy script `src/` | Một phần | Chạy đủ chuỗi data → demo không lỗi với model tí hon, dữ liệu giả lập; **chưa chạy với model và dữ liệu thật** |
+| Chạy script `src/` | Có (07/11) | Chạy với model và dữ liệu thật trên GPU; validation trùng notebook ở cả 3 epoch; test (epoch 2) 84.62%, F1 84.38% |
 | Chạy lại ex2 bản 30/10 đủ 3 epoch | Có (04/11) | GPU, 121,8 giây; test 84.62%, F1 84.67%; trùng kết quả lần 28/10 |
 
 ### Lưu ý về tính minh bạch

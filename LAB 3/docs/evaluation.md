@@ -44,9 +44,37 @@ Kết quả này trùng từng chữ số với test của lần 1 (cùng seed 4
 | Nguồn | Validation trước | Validation sau | Test accuracy | Test F1 |
 |---|---|---|---|---|
 | Notebook, cuối epoch 3 (lần 3) | 45.22% | 84.52% | **84.62%** | **84.67%** |
-| `src.train` + `src.evaluation`, epoch tốt nhất | `TODO` | `TODO` | `TODO` | `TODO` |
+| `src.train` + `src.evaluation`, epoch tốt nhất (epoch 2) | 45.22% | 84.62% | **84.62%** | 84.38% |
 
-`TODO`: chạy `src.train`, `src.evaluation` để có dòng thứ hai. Với các số trên, script sẽ chọn **epoch 2** (validation accuracy cao nhất 84.62%).
+Script chọn **epoch 2** (validation accuracy cao nhất 84.62%). Model epoch 2 và model epoch 3 cùng đúng 902/1.066 câu test (84.62%) nhưng F1 khác nhau (84.38% so với 84.67%), vì phân bổ lỗi giữa hai lớp khác nhau.
+
+### Đánh giá chi tiết bằng `src.evaluation` (07/11, model epoch 2, 1.066 câu test)
+
+| Model | Accuracy | Precision | Recall | F1 |
+|---|---|---|---|---|
+| DistilBERT chưa fine-tune (lớp phân loại ngẫu nhiên) | 42.87% | 28.41% | 9.38% | 14.10% |
+| **Đã fine-tune (epoch 2)** | **84.62%** | 85.69% | 83.11% | 84.38% |
+
+Precision, recall, F1 tính cho lớp POSITIVE. Model chưa fine-tune có recall chỉ 9.38%: gần như luôn đoán NEGATIVE.
+
+Theo từng lớp:
+
+| Lớp | Precision | Recall | F1 | Số câu |
+|---|---|---|---|---|
+| NEGATIVE | 83.61% | 86.12% | 84.84% | 533 |
+| POSITIVE | 85.69% | 83.11% | 84.38% | 533 |
+
+Confusion matrix (hàng = nhãn thật, cột = dự đoán):
+
+| | Dự đoán NEGATIVE | Dự đoán POSITIVE |
+|---|---|---|
+| **Thật NEGATIVE** | 459 | 74 |
+| **Thật POSITIVE** | 90 | 443 |
+
+![Confusion matrix](../results/confusion_matrix.png)
+
+- 164/1.066 câu bị đoán sai (`results/misclassified.csv`): 90 câu tích cực bị đoán tiêu cực, 74 câu tiêu cực bị đoán tích cực → model hơi nghiêng về NEGATIVE.
+- 82/164 câu sai có độ tin cậy trên 90%; chỉ 21 câu dưới 60%. Nhiều câu sai là review lẫn khen chê hoặc chuyển ý, ví dụ *"at its worst , the movie is pretty diverting ; the pity is that it rarely achieves its best ."* (thật POSITIVE, đoán NEGATIVE 97.28%).
 
 ### Lần 1 — bản đầu, 3 epoch, GPU (đánh giá trên tập test sau mỗi epoch)
 
@@ -73,13 +101,14 @@ Kết quả này trùng từng chữ số với test của lần 1 (cùng seed 4
 | Boring plot and terrible dialogue. | NEGATIVE 99.46% | NEGATIVE 99.46% | NEGATIVE 96.69% |
 | Not bad at all! | POSITIVE 95.90% | POSITIVE 95.90% | NEGATIVE 66.07% (sai) |
 
-Sau khi chạy `src.evaluation`, các file trong `results/` bổ sung: `test_metrics.json` (chỉ số trước/sau, theo lớp, confusion matrix), `confusion_matrix.png`, `misclassified.csv` (các câu đoán sai kèm độ tin cậy).
+File kết quả trong `results/`: `test_metrics.json` (chỉ số trước/sau, theo lớp, confusion matrix), `confusion_matrix.png`, `misclassified.csv` (164 câu đoán sai kèm độ tin cậy).
 
 ## 4. Nhận xét
 
 - **Kết quả cuối:** test accuracy **84.62%**, F1 **84.67%** (1.066 câu), từ 45.22% validation trước fine-tune.
 - **Tác dụng của fine-tune:** trước fine-tune lớp phân loại là trọng số ngẫu nhiên, model gần như chỉ đoán một nhãn (accuracy 42–45%, F1 14–18%). Chỉ 1 epoch đã lên khoảng 84%, nhờ tri thức ngôn ngữ DistilBERT học sẵn.
 - **Overfitting (xác nhận trên validation):** validation loss thấp nhất ở epoch 1 (0.3450) rồi tăng lên 0.4067 và 0.4874, trong khi training loss vẫn giảm (0.4002 → 0.1447); validation accuracy đạt cao nhất ở epoch 2 (84.62%) rồi giảm nhẹ ở epoch 3 (84.52%). Loss tăng mà accuracy gần như đứng yên nghĩa là model đoán sai với độ tự tin cao hơn. Với bộ dữ liệu này 1–2 epoch là đủ.
+- **Lỗi còn lại:** model hơi nghiêng về NEGATIVE (90 câu tích cực bị đoán sai so với 74 câu tiêu cực) và sai nhiều ở review lẫn khen chê; một nửa số câu sai có độ tin cậy trên 90%.
 - **Tái lập:** lần 3 cho cùng training loss và cùng kết quả test với lần 1. Lần 2 (CPU, không fp16) lệch nhẹ (ví dụ validation trước fine-tune 45.12% so với 45.22%) do khác phần cứng và độ chính xác số.
 - **Câu phủ định:** sau 1 epoch model còn đoán sai "Not bad at all!"; sau 3 epoch đã đúng. Câu phủ định cần model hiểu ngữ cảnh hơn là từ khóa đơn lẻ.
 - **Quy trình:** bản đầu theo dõi bằng tập test nên con số test không còn khách quan; bản sửa dùng validation để theo dõi và test chỉ một lần, đúng quy trình hơn. Lần 1 và lần 3 khác tập dùng để theo dõi nhưng cùng model, nên con số test giống nhau; lần 3 là kết quả chính thức.

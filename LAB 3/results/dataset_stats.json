@@ -1,0 +1,36 @@
+{
+  "dataset": "cornell-movie-review-data/rotten_tomatoes",
+  "label_names": [
+    "neg",
+    "pos"
+  ],
+  "splits": {
+    "train": {
+      "num_rows": 8530,
+      "label_counts": {
+        "neg": 4265,
+        "pos": 4265
+      },
+      "avg_words": 21.0,
+      "max_words": 59
+    },
+    "validation": {
+      "num_rows": 1066,
+      "label_counts": {
+        "neg": 533,
+        "pos": 533
+      },
+      "avg_words": 21.0,
+      "max_words": 54
+    },
+    "test": {
+      "num_rows": 1066,
+      "label_counts": {
+        "neg": 533,
+        "pos": 533
+      },
+      "avg_words": 21.2,
+      "max_words": 52
+    }
+  }
+}
