@@ -1,0 +1,9 @@
+# Phiên 002 ngày 13/11/2026 · Dashboard và thuyết trình Lab 2
+
+Người dùng yêu cầu một HTML trực quan, kiểm tra log và chi phí thời gian của hai model, cùng một bài thuyết trình giải thích quy trình và vị trí file. Đây là tài liệu mới cho WF-LAB2-001 v1. Không có thay đổi mã nguồn thực nghiệm, dữ liệu hoặc cấu hình cần CHG. Đã tạo docs/data-visualization.html và docs/overview.pptx tại máy theo yêu cầu.
+
+Đã so sánh run.log, history.json và result.json trong outputs/training-scene-v1 của VGG11, DenseNet121 và nhánh phụ. Kiểm tra đủ thứ tự epoch, val_accuracy, toàn bộ history trong result và lý do dừng. Dùng hai mốc thời gian trong run.log để tính thời gian trọn run. Thống kê còn lấy từ manifest cuối, preflight, kích thước best.pt, metrics và demo. Log không ghi điện năng hoặc đơn giá. HTML dùng đơn giá giả định do người đọc nhập.
+
+VGG11 chạy 10 epoch, tổng train + validation 43,69 phút, thời gian trọn run 45,52 phút. DenseNet121 chạy 12 epoch, tương ứng 48,82 và 50,38 phút. Nhánh phụ tính riêng. Hai notebook/báo cáo liên quan đến bằng chứng chi phí là notebooks/lab2_pipeline.ipynb và docs/plan-progress.md.
+
+Kiểm tra HTML bằng Edge headless ở chiều rộng 1.440 và 390 px, mở đủ 22 dòng epoch, kiểm tra liên kết, ảnh nhúng và công thức với đơn giá 0 và 10.000 đồng/giờ. Đã sửa tràn ngang trên màn hình nhỏ và chạy lại đạt. Trình đọc CSV ban đầu chưa xử lý BOM của per-class.csv; đã đọc lại bằng utf-8-sig. Deck gồm 11 slide có ghi chú cùng đường dẫn nguồn. Đã render để xem bố cục, kiểm tra cấu trúc gói, import lại đủ 11 slide và đối chiếu SHA-256 bản bàn giao với biên nhận xác thực. Bước xuất bản file cục bộ đã cần cấp quyền liên kết tệp cho công cụ xác thực. Không chạy lại training. Hai artifact trước phiên này chưa tồn tại trong docs; bản GitHub đối chiếu trước phiên là 59751e5. Kết quả phiên này lưu cục bộ.

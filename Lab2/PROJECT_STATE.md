@@ -58,3 +58,19 @@ Mục 06 đã giải thích cách dự đoán của majority baseline và cách 
 Mục 07–09 đã bổ sung so sánh kiến trúc, khảo sát LR bằng biểu đồ và diễn giải checkpoint từ log thật. Xem history/2026-11-03_025_sections-07-09.md.
 Notebook 16 bước có biểu đồ và nhận xét từ mục 10 đến 16. Xem history/2026-11-03_026_lower-review.md.
 Phiên xuất bản bản sửa sang nhánh lab2.1, gốc Lab2 tại 08da565. Phạm vi và cách kiểm chứng: history/2026-11-03_027_publish-lab2-1.md.
+
+Ngày 13/11/2026 đã đối chiếu 235 tệp của bài với commit `59751e5` trên nhánh GitHub `lab2.1`. Git push xác nhận `Everything up-to-date`. Nhật ký kiểm tra tại máy nằm ở `history/2026-11-13_001_verify-lab2-1.md`.
+
+Ngày 13/11/2026 đã tạo dashboard `docs/data-visualization.html` và bản trình bày 11 slide `docs/overview.pptx` tại máy từ log của WF-LAB2-001. Bằng chứng đối chiếu epoch, thời gian, kiểm tra HTML và PowerPoint ở `history/2026-11-13_002_dashboard-overview.md`.
+
+Dashboard đã bỏ mục ước tính tiền thuê máy theo yêu cầu ở `history/2026-11-13_003_bo-uoc-tinh-tien-thue.md`.
+
+Dashboard đã bổ sung EDA, minh họa cặp ảnh cùng cảnh và phân bố lớp từ manifest cuối. Xem `history/2026-11-13_004_dashboard-eda.md`.
+
+Dashboard đã đưa chín hình phân tích EDA lên đầu trang, tách bản chia cuối khỏi kết quả test và sắp nội dung theo trình tự thực nghiệm. Xem `history/2026-11-13_005_eda-dashboard-order.md`.
+
+Đã hoàn thành báo cáo Word 10 mục tại `docs/bao-cao-lab2.docx`, có bảng đối chiếu best train và best val của hai run. Xem `history/2026-11-13_006_bao-cao-word.md`.
+
+`MUC_LUC_LAB2.md` là mục lục liên kết cho 10 phần báo cáo. Kiểm tra tại `history/2026-11-13_007_muc-luc-file.md`.
+
+Phiên cập nhật bản nộp trên nhánh `lab2.1` dùng báo cáo Word, slide, dashboard và mục lục trong workspace ngày 13/11/2026. Xem `history/2026-11-13_009_publish-dashboard-report.md`.
