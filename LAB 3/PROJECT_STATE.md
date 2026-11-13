@@ -1,6 +1,6 @@
 # PROJECT_STATE — Lab 3
 
-Cập nhật: 2026-11-07, Asia/Ho_Chi_Minh.
+Cập nhật: 2026-11-13, Asia/Ho_Chi_Minh.
 
 ## Rules và workflow
 
@@ -12,12 +12,14 @@ Cập nhật: 2026-11-07, Asia/Ho_Chi_Minh.
 
 | Phase | Module | Trạng thái | Bằng chứng / ghi chú |
 |---|---|---|---|
-| P01 · Description | `docs/labs3-description.md` | IMPLEMENTED | 5W1H, input/output, luồng xử lý, đối chiếu 11 yêu cầu |
+| P01 · Description | `docs/labs3-description.md`, `docs/problem-definition.md` | IMPLEMENTED | 5W1H, input/output, luồng xử lý, đối chiếu 11 yêu cầu; phát biểu bài toán, tiêu chí, giả định, ràng buộc |
+| P01b · Design | `docs/design.md` | IMPLEMENTED | Kiến trúc, module, quyết định thiết kế; viết sau khi đã triển khai (mô tả thiết kế đã dùng, không phải thiết kế duyệt trước) |
 | P02 · Exercise 1 | `notebooks/ex1_sentiment_analysis.ipynb` | TESTED | Chạy trên GPU 28/10, output lưu trong notebook |
 | P03 · Data | `src/data.py`, notebook ex2 bước 2–4 | TESTED | 07/11: xuất `data/rotten_tomatoes/*.csv` (8.530/1.066/1.066), `results/dataset_stats.json` |
 | P04 · Model | `src/model.py`, notebook ex2 bước 3 | TESTED | 07/11: `results/model_summary.txt`, 66.955.010 tham số; sửa dòng in tên kiến trúc |
 | P05 · Training | `notebooks/ex2_finetuning.ipynb`, `src/train.py` | TESTED | Notebook 04/11 (121,8 giây); script 07/11 (131,5 giây, chọn epoch 2), validation giống hệt notebook |
 | P06 · Evaluation | `src/evaluation.py`, notebook ex2 bước 7 | TESTED | Notebook: test 84.62%, F1 84.67%. Script (epoch 2): 84.62%, F1 84.38%, confusion matrix, 164 câu sai. Sửa 07/11: nạp `evaluate` một lần, offline |
+| P07b · Visualization | `src/visualize.py` | TESTED | 13/11: tạo `results/data_visualization.html` từ CSV và `results/`, đã mở kiểm tra trên trình duyệt |
 | P07 · Demo | `src/demo.py` | TESTED | 07/11: `--compare` 5 câu, model Ex1 và Ex2 |
 | P08 · Bàn giao | README, `AI_USAGE.md`, báo cáo, upload | IN PROGRESS | Đã push 04/11 (`fa60ff9`); cần push bản 07/11; `AI_USAGE` thành viên khác và họ tên, MSSV trong báo cáo còn trống |
 
@@ -35,6 +37,8 @@ Chưa có phase nào ở trạng thái ACCEPTED: chưa ghi nhận nhóm/giảng 
 | 04/11 | Chạy lại `notebooks/ex2_finetuning.ipynb` đủ 3 epoch trên GPU; điền kết quả chính thức vào `docs/`, README | Đã push trong `fa60ff9` |
 | 04/11 | Push bản tổ chức lại + kết quả notebook | Commit `fa60ff9` "update lai lab3", nhánh `Lab3` |
 | 07/11 | Chạy các script `src`; sửa `src/model.py` (dòng in kiến trúc), `src/evaluation.py` (nạp `evaluate` một lần, offline); điền kết quả script vào `docs/`, README | Chưa commit |
+| 07/11 | Thêm `docs/problem-definition.md`, `docs/design.md` | Chưa commit |
+| 13/11 | README thêm "Tổng quan dự án"; thêm `src/visualize.py`, `results/data_visualization.html`; `docs/data.md` mục 7 | Chưa commit |
 
 ## Kiểm chứng
 

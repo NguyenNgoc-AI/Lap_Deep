@@ -78,3 +78,9 @@ D:\Code\.venv\Scripts\python.exe -m src.data
 | `results/dataset_stats.json` | Số câu, phân bố nhãn, số từ trung bình và dài nhất của từng tập |
 
 Lần chạy đầu cần mạng để tải dữ liệu từ Hugging Face Hub.
+
+## 7. Trực quan hóa dữ liệu
+
+`python -m src.visualize` tạo `results/data_visualization.html` (mở bằng trình duyệt, không cần mạng). Phần EDA gồm: sơ đồ quy trình EDA 7 bước kèm phát hiện chính, kiểm tra chất lượng và rò rỉ (câu rỗng, trùng lặp, câu val/test trùng train, ký tự ngoài ASCII), từ vựng (số từ, tỉ lệ từ chưa gặp ở train), dấu hiệu ngôn ngữ theo nhãn (phủ định, "but", "?", "!"), kết luận EDA; cùng với số câu theo nhãn ở mỗi tập, phân bố độ dài câu theo nhãn, thống kê độ dài (min/Q1/trung vị/Q3/max) theo tập, 12 từ đặc trưng nhất của mỗi lớp (log-odds, từ gặp ≥ 25 lần), ví dụ câu; cùng trang có đường loss, validation theo epoch, so sánh trước/sau fine-tune, confusion matrix và các câu đoán sai.
+
+Nhận xét chính: dữ liệu sạch — 0 câu rỗng, 0 câu trùng, 0 câu validation/test trùng train; 18.552 từ khác nhau ở train, khoảng 6,3–6,4% lượt từ ở validation/test chưa gặp ở train; 26,3% câu NEGATIVE có từ phủ định so với 17,2% câu POSITIVE; hai nhãn cân bằng ở cả 3 tập; ba tập có phân bố độ dài giống nhau (trung vị 20–21 từ); độ dài câu không khác giữa hai nhãn; từ đặc trưng NEGATIVE là "flat", "boring", "dull", "stupid", POSITIVE là "engrossing", "culture", "touching", "wonderful".

@@ -27,6 +27,8 @@ Không dùng công cụ AI nào khác cho phần việc khai báo ở đây.
 | 04/11 | Rà soát Lab 3 theo `RULES.md` v1.1 (nhánh `lab2.1`): đổi tên file `docs/`, bổ sung nội dung còn thiếu, tạo `PROJECT_STATE.md` và `history/` |
 | 04/11 | Hướng dẫn push bằng Git/VS Code; xử lý lỗi môi trường sau khi cài lại Windows (thiếu Git, mất Python gốc của `.venv`, thiếu `ipykernel`); đọc kết quả chạy lại ex2 và điền vào tài liệu |
 | 07/11 | Hướng dẫn chạy các script `src`; sửa lỗi in sai tên kiến trúc (`src/model.py`) và lỗi treo khi tính chỉ số (`src/evaluation.py`); đọc kết quả và điền vào tài liệu |
+| 07/11 | Viết `docs/problem-definition.md` và `docs/design.md` theo yêu cầu bổ sung phần define problem và design |
+| 13/11 | Viết mục "Tổng quan dự án" trong README và `src/visualize.py` (trang HTML trực quan hóa dữ liệu và kết quả); soạn bộ câu hỏi ôn tập Lab 1, Lab 3 |
 
 AI không được dùng làm nguồn xác nhận kết quả. Mọi con số trong tài liệu lấy từ output thật của notebook.
 
@@ -47,8 +49,8 @@ AI không được dùng làm nguồn xác nhận kết quả. Mọi con số tr
 | Hai file notebook hiện tại | Claude tạo lại file | File `lab3.ipynb` ban đầu bị mất trên máy; Claude tạo lại hai notebook qua kết nối với máy tính |
 | Ô "Nhận xét" của Exercise 1 và bản đầu Exercise 2 | Claude viết | Dựa trên output thật do sinh viên chạy |
 | Sửa ex2 ngày 30/10 (tách validation/test) | **Không thuộc phần này** | Do HoangKhanh1904 thực hiện — xem mục 8 |
-| `src/` (`config`, `data`, `model`, `train`, `evaluation`, `demo`) | Claude viết | Chưa chạy với model và dữ liệu thật |
-| `README.md`, `docs/*.md`, `requirements.txt`, `.gitignore`, `AI_USAGE.md`, `PROJECT_STATE.md`, báo cáo | Claude viết | Số liệu lấy từ output notebook |
+| `src/` (`config`, `data`, `model`, `train`, `evaluation`, `demo`, `visualize`) | Claude viết | Sinh viên chạy với model và dữ liệu thật (07/11) |
+| `README.md`, `docs/*.md` (gồm `problem-definition.md`, `design.md`), `requirements.txt`, `.gitignore`, `AI_USAGE.md`, `PROJECT_STATE.md`, báo cáo | Claude viết | Số liệu lấy từ output notebook |
 | `history/*.md` | Claude viết | Log trước 04/11 là log ghi bù từ lịch sử trò chuyện và commit; log 30/10 chỉ dựa trên diff, người sửa cần bổ sung |
 | Hướng dẫn cài PyTorch CUDA và sửa lỗi môi trường | Claude hướng dẫn | Sinh viên tự thực hiện các lệnh |
 

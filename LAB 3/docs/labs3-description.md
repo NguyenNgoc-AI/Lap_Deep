@@ -55,6 +55,8 @@ Ex2 thêm vòng huấn luyện:
   → đánh giá validation mỗi epoch → model cuối / epoch tốt nhất → đánh giá test một lần
 ```
 
+Phát biểu bài toán đầy đủ: [problem-definition.md](problem-definition.md). Thiết kế hệ thống: [design.md](design.md).
+
 Chi tiết: [data.md](data.md) · [model.md](model.md) · [training.md](training.md) · [evaluation.md](evaluation.md) · [demo.md](demo.md).
 
 ## 4. Bài toán
